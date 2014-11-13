@@ -41,11 +41,12 @@ define('WP_CMF_VERSION', '0.1.0');
 define('WP_CMF_DOMAIN', 'wp_cmf');
 define('WP_CMF_URL', plugin_dir_url(__FILE__));
 define('WP_CMF_PATH', dirname(__FILE__) . '/');
+define('WP_CMF_TEMPLATES_PATH', WP_CMF_PATH . '/includes/templates/');
 
 /**
  * Includes
  */
-require_once plugin_dir_path(__FILE__) . 'includes/class-cmf.php';
+require_once WP_CMF_PATH . 'includes/class-cmf.php';
 
 /**
  * Wrapper function

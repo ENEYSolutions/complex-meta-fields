@@ -44,7 +44,7 @@ namespace ENEYSolutions {
      * Welcome page cb
      */
     public function ui_root_page() {
-      echo 'Welcome';
+      include WP_CMF_TEMPLATES_PATH . 'root-page.php';
     }
     
     /**

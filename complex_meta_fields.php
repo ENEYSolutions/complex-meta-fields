@@ -33,21 +33,30 @@
  * Copyright (c) 2013 10up, LLC
  * https://github.com/10up/grunt-wp-plugin
  */
-// Useful global constants
+
+/**
+ * Constants
+ */
 define('WP_CMF_VERSION', '0.1.0');
 define('WP_CMF_DOMAIN', 'wp_cmf');
 define('WP_CMF_URL', plugin_dir_url(__FILE__));
 define('WP_CMF_PATH', dirname(__FILE__) . '/');
 
+/**
+ * Includes
+ */
 require_once plugin_dir_path(__FILE__) . 'includes/class-cmf.php';
 
+/**
+ * Wrapper function
+ * @return CMF
+ */
 function wp_cmf() {
-  return new \ENEYSolutions\CMF();
+  return \ENEYSolutions\CMF::instance();
 }
 
 /**
- * Default initialization for the plugin:
- * - Registers the default textdomain.
+ * Init function
  */
 function wp_cmf_init() {
   $locale = apply_filters('plugin_locale', get_locale(), 'wp_cmf');
@@ -58,24 +67,21 @@ function wp_cmf_init() {
 }
 
 /**
- * Activate the plugin
+ * Activation hook
  */
 function wp_cmf_activate() {
-  // First load the init scripts in case any rewrite functionality is being loaded
   wp_cmf_init();
-
   flush_rewrite_rules();
 }
 
-register_activation_hook(__FILE__, 'wp_cmf_activate');
-
 /**
- * Deactivate the plugin
- * Uninstall routines should be in uninstall.php
+ * Deactivation hook
  */
 function wp_cmf_deactivate() {}
 
+/**
+ * Initial hooks
+ */
+register_activation_hook(__FILE__, 'wp_cmf_activate');
 register_deactivation_hook(__FILE__, 'wp_cmf_deactivate');
-
-// Wireup actions
 add_action('init', 'wp_cmf_init');

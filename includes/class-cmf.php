@@ -16,6 +16,8 @@ namespace ENEYSolutions {
      */
     static $instance = null;
     
+    public $settings;
+    
     /**
      * Singleton
      * @return CMF
@@ -28,7 +30,11 @@ namespace ENEYSolutions {
      * Construct
      */
     public function __construct() {
+      
+      $this->settings = CMF\Settings::instance();
+      
       \add_action( 'admin_menu', array( $this, 'admin_menu' ) );
+      \add_action( 'admin_init', array( $this, 'admin_init' ) );
     }
     
     /**
@@ -41,6 +47,32 @@ namespace ENEYSolutions {
     }
     
     /**
+     * 
+     */
+    public function admin_init() {
+      
+      register_setting(
+        'cmf-settings', 
+        'cmf-settings'
+      );
+
+      add_settings_section(
+        'cmf-setting-section', 
+        'General', 
+        array( $this->settings, 'general_section_description' ), 
+        'cmf-settings-general'
+      );
+
+      add_settings_field(
+        'eg_setting_post_types', 
+        'Activate for', 
+        array( $this->settings, 'general_post_types' ), 
+        'cmf-settings-general', 
+        'cmf-setting-section'
+      );
+    }
+
+    /**
      * Welcome page cb
      */
     public function ui_root_page() {
@@ -51,14 +83,14 @@ namespace ENEYSolutions {
      * Manage page cb
      */
     public function ui_manage_page() {
-      echo 'manage';
+      include WP_CMF_TEMPLATES_PATH . 'manage-page.php';
     }
     
     /**
      * Settings page cb
      */
     public function ui_settings_page() {
-      echo 'Settings';
+      include WP_CMF_TEMPLATES_PATH . 'settings-page.php';
     }
   }
 }

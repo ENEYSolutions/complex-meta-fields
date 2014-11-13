@@ -46,6 +46,7 @@ define('WP_CMF_TEMPLATES_PATH', WP_CMF_PATH . '/includes/templates/');
 /**
  * Includes
  */
+require_once WP_CMF_PATH . 'includes/class-cmf-settings.php';
 require_once WP_CMF_PATH . 'includes/class-cmf.php';
 
 /**

@@ -8,13 +8,25 @@
 
 (function (window, undefined) {
   'use strict';
+  
+  //** Field Constructor */
+  var _Field = function() {
+    return {
+      input: '',
+      name: '',
+      options: ''
+    };
+  }
 
+  //** Start with Angular */
   var cmf = angular
-          
+  
+  //** Create module */
   .module( 'cmfApp', [] )
   
+  //** Create controller */
   .controller( 'cmfWorkspace', function( $scope ){
-    $scope.fields = [
+    $scope.fieldsets = [
       {
         name: 'Sub Company',
         post_type: 'post',
@@ -49,6 +61,36 @@
         ]
       }
     ];
+    
+    /**
+     * Add new Field into field set
+     * @param {type} options
+     * @returns {undefined}
+     */
+    $scope.addField = function( options ) {
+      options.push(new _Field());
+    }
+    
+    /**
+     * Remove Field from field set
+     * @param {type} options
+     * @param {type} item
+     * @returns {undefined}
+     */
+    $scope.removeField = function( options, item ) {
+      options.splice(item, 1);
+    }
+    
+    /**
+     * Check whether to show values intup for field or not
+     * @param {type} option
+     * @returns {Boolean}
+     */
+    $scope.fieldHasValues = function( option ) {
+      return ['select', 'radio', 'checkbox'].indexOf( option.input ) != -1;
+    }
+    
+    
   } );
 
 })(this);

@@ -31,16 +31,16 @@ $post_types=get_post_types(array(
             <ul>
               
               <!-- Fields Set -->
-              <li ng-repeat="field in fields">
+              <li ng-repeat="fieldset in fieldsets">
                 
                 <!-- Fields Set Name -->
-                <h3 ng-click="field.show = !field.show">{{field.name}}</h3>
+                <h3 ng-click="fieldset.show = !fieldset.show">{{fieldset.name}}</h3>
                 
-                <div ng-show="field.show">
+                <div ng-show="fieldset.show">
                 
                   <!-- Fields Set Settings -->
                   <div>
-                    <select ng-value="field.post_type">
+                    <select ng-value="fieldset.post_type">
                       <?php foreach ($post_types as $post_type): ?>
                       <option value="<?php echo esc_attr($post_type->name); ?>"><?php echo esc_html($post_type->name); ?></option>
                       <?php endforeach; ?>
@@ -49,14 +49,16 @@ $post_types=get_post_types(array(
 
                   <!-- Fields Set Options -->
                   <ul>
-                    <li ng-repeat="option in field.options">
+                    <li ng-repeat="option in fieldset.options">
+                      
                       <label>
                         <?php _e('Field Name'); ?>
                         <input type="text" ng-value="option.name" />
                       </label>
+                      
                       <label>
                         <?php _e('Field Input'); ?>
-                        <select ng-value="option.input">
+                        <select ng-model="option.input">
                           <optgroup label="<?php _e('Common', WP_CMF_DOMAIN); ?>">
                             <option value="text"><?php _e('Text', WP_CMF_DOMAIN); ?></option>
                             <option value="checkbox"><?php _e('Check Box', WP_CMF_DOMAIN); ?></option>
@@ -65,8 +67,19 @@ $post_types=get_post_types(array(
                           </optgroup>
                         </select>
                       </label>
+                      
+                      <label ng-show="fieldHasValues(option)">
+                        <?php _e('Values'); ?>
+                        <textarea ng-model="option.options"></textarea>
+                      </label>
+                      
+                      <!-- Remove Field Button -->
+                      <input type="button" class="button-secondary" value="-" ng-click="removeField(fieldset.options, $index)" />
                     </li>
                   </ul>
+                  
+                  <!-- Add Field Button -->
+                  <input type="button" class="button-secondary" value="+" ng-click="addField(fieldset.options)" />
                 </div>
               </li>
               

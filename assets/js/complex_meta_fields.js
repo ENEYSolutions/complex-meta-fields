@@ -21,6 +21,11 @@
           {
             input: 'text',
             name: 'CEO'
+          },
+          {
+            input: 'select',
+            name: 'Type',
+            options: 'big:Big,small:Small'
           }
         ]
       },

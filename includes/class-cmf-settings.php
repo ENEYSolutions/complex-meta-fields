@@ -33,17 +33,6 @@ namespace ENEYSolutions\CMF {
      */
     public function general_post_types() {
       $setting = get_option( 'cmf-settings' );
-      echo '<pre>';
-      print_r( $setting );
-      echo '</pre>';
-      
-      if ( empty( $setting ) ) {
-        $setting['post_types'] = '';
-      }
-      
-      ?>
-        <input type="text" name="cmf-settings[post_types]" value="<?php echo $setting['post_types']; ?>" />
-      <?php
     }
   
   }

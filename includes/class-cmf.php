@@ -16,6 +16,16 @@ namespace ENEYSolutions {
      */
     static $instance = null;
     
+    /**
+     *
+     * @var type 
+     */
+    private $admin_pages = array();
+    
+    /**
+     *
+     * @var type 
+     */
     public $settings;
     
     /**
@@ -35,15 +45,39 @@ namespace ENEYSolutions {
       
       \add_action( 'admin_menu', array( $this, 'admin_menu' ) );
       \add_action( 'admin_init', array( $this, 'admin_init' ) );
+      \add_action( 'admin_enqueue_scripts', array( $this , 'load_assets') );
+    }
+    
+    /**
+     * Load assets
+     */
+    function load_assets() {
+      global $current_screen;
+      
+      //** Register Angular JS */
+      wp_register_script( 'angular-core', '//ajax.googleapis.com/ajax/libs/angularjs/1.3.3/angular.min.js', false, '1.3.3' );
+      
+      switch ( $current_screen->id ) {
+        
+        //** IF manage page */
+        case $this->admin_pages['manage']:
+          
+          wp_enqueue_script( 'angular-core' );
+          
+          break;
+        
+        //** For other cases */
+        default: break;
+      }
     }
     
     /**
      * Admin menu cb function
      */
     public function admin_menu() {
-      \add_menu_page( __( 'Complex Meta Fields Welcome', WP_CMF_DOMAIN ), __( 'CMF', WP_CMF_DOMAIN ), 'manage_options', 'wp_cmf', array( $this, 'ui_root_page' ), null, 100 );
-      \add_submenu_page( 'wp_cmf' , __( 'Complex Meta Fields', WP_CMF_DOMAIN ), __( 'Manage', WP_CMF_DOMAIN ), 'manage_options', 'wp_cmf_manage', array( $this, 'ui_manage_page' ));
-      \add_submenu_page( 'wp_cmf' , __( 'Complex Meta Fields Settings', WP_CMF_DOMAIN ), __( 'Settings', WP_CMF_DOMAIN ), 'manage_options', 'wp_cmf_settings', array( $this, 'ui_settings_page' ));
+      $this->admin_pages['toplevel'] = \add_menu_page( __( 'Complex Meta Fields Welcome', WP_CMF_DOMAIN ), __( 'CMF', WP_CMF_DOMAIN ), 'manage_options', 'wp_cmf', array( $this, 'ui_root_page' ), null, 100 );
+      $this->admin_pages['manage'] = \add_submenu_page( 'wp_cmf' , __( 'Complex Meta Fields', WP_CMF_DOMAIN ), __( 'Manage', WP_CMF_DOMAIN ), 'manage_options', 'wp_cmf_manage', array( $this, 'ui_manage_page' ));
+      //$this->admin_pages['settings'] = \add_submenu_page( 'wp_cmf' , __( 'Complex Meta Fields Settings', WP_CMF_DOMAIN ), __( 'Settings', WP_CMF_DOMAIN ), 'manage_options', 'wp_cmf_settings', array( $this, 'ui_settings_page' ));
     }
     
     /**

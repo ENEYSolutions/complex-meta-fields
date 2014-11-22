@@ -12,6 +12,14 @@
       options: ''
     };
   }
+  
+  var _FieldSet = function() {
+    return {
+      name: 'New Field Set',
+      post_type: 'post',
+      options: []
+    };
+  }
 
   //** Start with Angular */
   var cmf = angular
@@ -58,6 +66,25 @@
     ];
     
     /**
+     * Add Field Set
+     * @param {type} fieldsets
+     * @returns {undefined}
+     */
+    $scope.addFieldSet = function( fieldsets ) {
+      fieldsets.push(new _FieldSet());
+    }
+    
+    /**
+     * 
+     * @param {type} fieldsets
+     * @param {type} item
+     * @returns {undefined}
+     */
+    $scope.removeFieldSet = function( fieldsets, item ) {
+      if ( confirm( 'Sure?' ) ) fieldsets.splice(item, 1);
+    }
+    
+    /**
      * Add new Field into field set
      * @param {type} options
      * @returns {undefined}
@@ -73,7 +100,7 @@
      * @returns {undefined}
      */
     $scope.removeField = function( options, item ) {
-      options.splice(item, 1);
+      if ( confirm( 'Sure?' ) ) options.splice(item, 1);
     }
     
     /**
@@ -82,7 +109,7 @@
      * @returns {Boolean}
      */
     $scope.fieldHasValues = function( option ) {
-      return ['select', 'radio', 'checkbox'].indexOf( option.input ) != -1;
+      return ['select', 'radio', 'checkbox'].indexOf( option.input ) !== -1;
     }
     
     

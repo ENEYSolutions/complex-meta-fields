@@ -40,11 +40,18 @@ $post_types=get_post_types(array(
                 
                   <!-- Fields Set Settings -->
                   <div>
-                    <select ng-value="fieldset.post_type">
-                      <?php foreach ($post_types as $post_type): ?>
-                      <option value="<?php echo esc_attr($post_type->name); ?>"><?php echo esc_html($post_type->name); ?></option>
-                      <?php endforeach; ?>
-                    </select>
+                    <label>
+                      <?php _e( 'FieldSet Name', WP_CMF_DOMAIN ); ?>
+                      <input type="text" ng-model="fieldset.name" />
+                    </label>
+                    <label>
+                      <?php _e( 'Use for', WP_CMF_DOMAIN ); ?>
+                      <select ng-value="fieldset.post_type">
+                        <?php foreach ($post_types as $post_type): ?>
+                        <option value="<?php echo esc_attr($post_type->name); ?>"><?php echo esc_html($post_type->name); ?></option>
+                        <?php endforeach; ?>
+                      </select>
+                    </label>
                   </div>
 
                   <!-- Fields Set Options -->
@@ -81,9 +88,12 @@ $post_types=get_post_types(array(
                   <!-- Add Field Button -->
                   <input type="button" class="button-secondary" value="+" ng-click="addField(fieldset.options)" />
                 </div>
+                <input type="button" class="button-secondary" value="-" ng-click="removeFieldSet(fieldsets, $index)" />
               </li>
               
             </ul>
+            
+            <input type="button" class="button-secondary" value="+" ng-click="addFieldSet(fieldsets)" />
           </td>
           
           <!-- Right col -->

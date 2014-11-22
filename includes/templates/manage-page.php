@@ -28,71 +28,116 @@ $post_types=get_post_types(array(
             <h2><?php _e( 'Workspace', WP_CMF_DOMAIN ); ?></h2>
             
             <!-- Fields Set List -->
-            <ul>
+            <ul class="field-set-list">
               
               <!-- Fields Set -->
-              <li ng-repeat="fieldset in fieldsets">
+              <li class="field-set-item" ng-repeat="fieldset in fieldsets">
                 
                 <!-- Fields Set Name -->
                 <h3 ng-click="fieldset.show = !fieldset.show">{{fieldset.name}}</h3>
                 
-                <div ng-show="fieldset.show">
+                <!-- Remove Field Set -->
+                <input type="button" class="button-secondary remove-field-set" value="<?php _e( 'Delete', WP_CMF_DOMAIN ); ?>" ng-click="removeFieldSet(fieldsets, $index)" />
                 
-                  <!-- Fields Set Settings -->
-                  <div>
-                    <label>
-                      <?php _e( 'FieldSet Name', WP_CMF_DOMAIN ); ?>
-                      <input type="text" ng-model="fieldset.name" />
-                    </label>
-                    <label>
-                      <?php _e( 'Use for', WP_CMF_DOMAIN ); ?>
-                      <select ng-value="fieldset.post_type">
-                        <?php foreach ($post_types as $post_type): ?>
-                        <option value="<?php echo esc_attr($post_type->name); ?>"><?php echo esc_html($post_type->name); ?></option>
-                        <?php endforeach; ?>
-                      </select>
-                    </label>
-                  </div>
-
-                  <!-- Fields Set Options -->
-                  <ul>
-                    <li ng-repeat="option in fieldset.options">
-                      
-                      <label>
-                        <?php _e('Field Name'); ?>
-                        <input type="text" ng-value="option.name" />
-                      </label>
-                      
-                      <label>
-                        <?php _e('Field Input'); ?>
-                        <select ng-model="option.input">
-                          <optgroup label="<?php _e('Common', WP_CMF_DOMAIN); ?>">
-                            <option value="text"><?php _e('Text', WP_CMF_DOMAIN); ?></option>
-                            <option value="checkbox"><?php _e('Check Box', WP_CMF_DOMAIN); ?></option>
-                            <option value="radio"><?php _e('Radio', WP_CMF_DOMAIN); ?></option>
-                            <option value="select"><?php _e('Dropdown', WP_CMF_DOMAIN); ?></option>
-                          </optgroup>
-                        </select>
-                      </label>
-                      
-                      <label ng-show="fieldHasValues(option)">
-                        <?php _e('Values'); ?>
-                        <textarea ng-model="option.options"></textarea>
-                      </label>
-                      
-                      <!-- Remove Field Button -->
-                      <input type="button" class="button-secondary" value="-" ng-click="removeField(fieldset.options, $index)" />
-                    </li>
-                  </ul>
+                <div class="clear"></div>
+                
+                <div class="expandable" ng-show="fieldset.show">
                   
-                  <!-- Add Field Button -->
-                  <input type="button" class="button-secondary" value="+" ng-click="addField(fieldset.options)" />
+                  <hr />
+                  
+                  <table width="100%" cellpadding="0" cellspacing="0">
+                    <tr valign="top">
+                      
+                      <!-- Fields Set Settings -->
+                      <td width="25%" class="left">
+
+                        <p>
+                          <label>
+                            <?php _e( 'FieldSet Name', WP_CMF_DOMAIN ); ?><br />
+                            <input required type="text" ng-model="fieldset.name" />
+                          </label>
+                        </p>
+                        
+                        <p>
+                          <label>
+                            <?php _e( 'Use for', WP_CMF_DOMAIN ); ?><br />
+                            <select ng-value="fieldset.post_type">
+                              <?php foreach ($post_types as $post_type): ?>
+                              <option value="<?php echo esc_attr($post_type->name); ?>"><?php echo esc_html($post_type->name); ?></option>
+                              <?php endforeach; ?>
+                            </select>
+                          </label>
+                        </p>
+                        
+                        <p>
+                          <!-- Add Field Button -->
+                          <input type="button" class="button-secondary" value="<?php _e( 'Add Field', WP_CMF_DOMAIN ); ?>" ng-click="addField(fieldset.options)" />
+                        </p>
+                 
+                      </td>
+                      <td class="right">
+
+                        <!-- Fields Set Options -->
+                        <ul>
+                          <li class="field-item" ng-repeat="option in fieldset.options">
+                            
+                            <table width="100%" cellpadding="0" cellspacing="0">
+                              <tr valign="top">
+                                
+                                <td width="45%">
+                                  <label>
+                                    <?php _e('Field Name'); ?><br />
+                                    <input type="text" ng-value="option.name" />
+                                  </label>
+                                </td>
+                                
+                                <td width="45%">
+                                  <label>
+                                    <?php _e('Field Input'); ?><br />
+                                    <select ng-model="option.input">
+                                      <optgroup label="<?php _e('Common', WP_CMF_DOMAIN); ?>">
+                                        <option value="text"><?php _e('Text', WP_CMF_DOMAIN); ?></option>
+                                        <option value="checkbox"><?php _e('Check Box', WP_CMF_DOMAIN); ?></option>
+                                        <option value="radio"><?php _e('Radio', WP_CMF_DOMAIN); ?></option>
+                                        <option value="select"><?php _e('Dropdown', WP_CMF_DOMAIN); ?></option>
+                                      </optgroup>
+                                    </select>
+                                  </label>
+                                </td>
+                                
+                                <td valign="top">
+                                  <!-- Remove Field Button -->
+                                  <button class="button-secondary remove-field" ng-click="removeField(fieldset.options, $index)">-</button>
+                                </td>
+                                
+                              </tr>
+                              
+                              <tr valign="top">
+                                <td colspan="2">
+                                  
+                                  <label ng-show="fieldHasValues(option)">
+                                    <?php _e('Values', WP_CMF_DOMAIN); ?><br />
+                                    <textarea ng-model="option.options"></textarea>
+                                  </label>
+                                  
+                                </td>
+                                <td></td>
+                              </tr>
+                            </table>
+
+                          </li>
+                        </ul>
+                        
+                      </td>
+                    </tr>
+                  </table>
                 </div>
-                <input type="button" class="button-secondary" value="-" ng-click="removeFieldSet(fieldsets, $index)" />
+                
               </li>
               
             </ul>
             
+            <!-- Add Fields Set -->
             <input type="button" class="button-secondary" value="+" ng-click="addFieldSet(fieldsets)" />
           </td>
           

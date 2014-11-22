@@ -5,3 +5,94 @@
  * Copyright (c) 2014 Anton Korotkov
  * Licensed under the GPLv2+ license.
  */
+
+#cmf-fields-managed {
+  
+  .field-set-list {
+    
+    .field-set-item {
+      background: none repeat scroll 0 0 white;
+      border: 1px solid #dddddd;
+      border-radius: 3px;
+      box-shadow: 1px 1px 3px #ddd;
+      padding: 25px;
+      
+      h3 {
+        margin-top: 0;
+        margin-bottom: 0;
+        cursor: pointer;
+        float: left;
+        line-height: 25px;
+        color: #0074A2;
+      }
+      
+      .remove-field-set {
+        float: right;
+      }
+      
+      .expandable {
+        padding-top: 15px;
+        
+        > table {
+          margin-top: 25px;
+          
+          tr {
+            
+            td {
+              
+              &.left {
+                padding-right: 25px;
+                border-right: 1px solid #dddddd;
+                
+                input, select {
+                  width: 100%;
+                }
+              }
+              
+              &.right {
+                padding-left: 25px;
+              }
+              
+              p {
+                margin-top: 0;
+                margin-bottom: 10px;
+              }
+              
+              .field-item {
+                background: none repeat scroll 0 0 #FAFAFA;
+                border: 1px solid #dddddd;
+                border-radius: 3px;
+                margin-bottom: 5px;
+                padding: 20px;
+                box-shadow: 1px 1px 1px #eee;
+                
+                table {
+                  
+                  tr {
+                    
+                    td {
+                      
+                      padding-right: 25px;
+                      
+                      &:last-child {
+                        padding-right: 0;
+                      }
+                      
+                      input, select, textarea {
+                        width: 100%;
+                      }
+                    }
+                  }
+                }
+                
+                .remove-field {
+                  float: right;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

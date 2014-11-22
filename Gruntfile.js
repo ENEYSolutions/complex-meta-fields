@@ -101,7 +101,7 @@ module.exports = function( grunt ) {
 			
 			scripts: {
 				files: ['assets/js/src/**/*.js', 'assets/js/vendor/**/*.js'],
-				tasks: ['jshint', 'concat', 'uglify'],
+				tasks: ['concat', 'uglify'],
 				options: {
 					debounceDelay: 500
 				}
@@ -159,7 +159,7 @@ module.exports = function( grunt ) {
 	
 	// Default task.
 	
-	grunt.registerTask( 'default', ['jshint', 'concat', 'uglify', 'less', 'cssmin'] );
+	grunt.registerTask( 'default', ['concat', 'uglify', 'less', 'cssmin'] );
 	
 	
 	grunt.registerTask( 'build', ['default', 'clean', 'copy', 'compress'] );

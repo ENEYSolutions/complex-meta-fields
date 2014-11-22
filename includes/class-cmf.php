@@ -55,7 +55,8 @@ namespace ENEYSolutions {
       global $current_screen;
       
       //** Register Angular JS */
-      wp_register_script( 'angular-core', '//ajax.googleapis.com/ajax/libs/angularjs/1.3.3/angular.min.js', false, '1.3.3' );
+      wp_register_script( 'angular-core', '//ajax.googleapis.com/ajax/libs/angularjs/1.3.3/angular.js', false, '1.3.3' );
+      wp_register_script( 'cmf-core', WP_CMF_URL . 'assets/js/complex_meta_fields.js', false, WP_CMF_VERSION );
       
       switch ( $current_screen->id ) {
         
@@ -69,6 +70,8 @@ namespace ENEYSolutions {
         //** For other cases */
         default: break;
       }
+      
+      wp_enqueue_script( 'cmf-core' );
     }
     
     /**

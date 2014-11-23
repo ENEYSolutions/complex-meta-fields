@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Plugin Name: Complex Meta Fields
  * Plugin URI:  http://eney.solutions/complex-meta-fields
@@ -30,49 +31,56 @@
  */
 
 /**
- * Built using grunt-wp-plugin
- * Copyright (c) 2013 10up, LLC
- * https://github.com/10up/grunt-wp-plugin
+ * Constants
  */
-
-// Useful global constants
-define( 'WP_CMF_VERSION', '0.1.0' );
-define( 'WP_CMF_URL',     plugin_dir_url( __FILE__ ) );
-define( 'WP_CMF_PATH',    dirname( __FILE__ ) . '/' );
+define('WP_CMF_VERSION', '0.1.0');
+define('WP_CMF_DOMAIN', 'wp_cmf');
+define('WP_CMF_URL', plugin_dir_url(__FILE__));
+define('WP_CMF_PATH', dirname(__FILE__) . '/');
+define('WP_CMF_TEMPLATES_PATH', WP_CMF_PATH . '/includes/templates/');
+define('WP_CMF_OPTION', 'wp_cmf_options');
 
 /**
- * Default initialization for the plugin:
- * - Registers the default textdomain.
+ * Includes
+ */
+require_once WP_CMF_PATH . 'includes/class-cmf-settings.php';
+require_once WP_CMF_PATH . 'includes/class-cmf.php';
+
+/**
+ * Wrapper function
+ * @return CMF
+ */
+function wp_cmf() {
+  return \ENEYSolutions\CMF::instance();
+}
+
+/**
+ * Init function
  */
 function wp_cmf_init() {
-	$locale = apply_filters( 'plugin_locale', get_locale(), 'wp_cmf' );
-	load_textdomain( 'wp_cmf', WP_LANG_DIR . '/wp_cmf/wp_cmf-' . $locale . '.mo' );
-	load_plugin_textdomain( 'wp_cmf', false, dirname( plugin_basename( __FILE__ ) ) . '/languages/' );
+  $locale = apply_filters('plugin_locale', get_locale(), 'wp_cmf');
+  load_textdomain('wp_cmf', WP_LANG_DIR . '/wp_cmf/wp_cmf-' . $locale . '.mo');
+  load_plugin_textdomain('wp_cmf', false, dirname(plugin_basename(__FILE__)) . '/languages/');
+  
+  wp_cmf();
 }
 
 /**
- * Activate the plugin
+ * Activation hook
  */
 function wp_cmf_activate() {
-	// First load the init scripts in case any rewrite functionality is being loaded
-	wp_cmf_init();
-
-	flush_rewrite_rules();
+  wp_cmf_init();
+  flush_rewrite_rules();
 }
-register_activation_hook( __FILE__, 'wp_cmf_activate' );
 
 /**
- * Deactivate the plugin
- * Uninstall routines should be in uninstall.php
+ * Deactivation hook
  */
-function wp_cmf_deactivate() {
+function wp_cmf_deactivate() {}
 
-}
-register_deactivation_hook( __FILE__, 'wp_cmf_deactivate' );
-
-// Wireup actions
-add_action( 'init', 'wp_cmf_init' );
-
-// Wireup filters
-
-// Wireup shortcodes
+/**
+ * Initial hooks
+ */
+register_activation_hook(__FILE__, 'wp_cmf_activate');
+register_deactivation_hook(__FILE__, 'wp_cmf_deactivate');
+add_action('init', 'wp_cmf_init');

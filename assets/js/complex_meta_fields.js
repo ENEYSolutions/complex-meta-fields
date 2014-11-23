@@ -1,11 +1,6 @@
-/**
- * Complex Meta Fields
+/*! Complex Meta Fields - v0.1.0
  * http://eney.solutions/complex-meta-fields
- *
- * Copyright (c) 2014 Anton Korotkov
- * Licensed under the GPLv2+ license.
- */
-
+ * Copyright (c) 2014; * Licensed GPLv2+ */
 (function (window, undefined) {
   'use strict';
   

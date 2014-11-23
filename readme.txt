@@ -1,9 +1,8 @@
 === Complex Meta Fields ===
-Contributors:      10up
+Contributors:      Anton Korotkoff
 Donate link:       http://eney.solutions/complex-meta-fields
-Tags: 
-Requires at least: 3.9
-Tested up to:      3.9
+Requires at least: 4.0
+Tested up to:      4.0
 Stable tag:        0.1.0
 License:           GPLv2 or later
 License URI:       http://www.gnu.org/licenses/gpl-2.0.html

@@ -105,7 +105,8 @@ $post_types=get_post_types(array(
                                     <?php _e('Field Input'); ?><br />
                                     <select name="fieldsets[{{$parent.$index}}][options][{{$index}}][input]" ng-model="option.input">
                                       <optgroup label="<?php _e('Common', WP_CMF_DOMAIN); ?>">
-                                        <option value="text"><?php _e('Text', WP_CMF_DOMAIN); ?></option>
+                                        <option value="text"><?php _e('Text Line', WP_CMF_DOMAIN); ?></option>
+                                        <option value="textarea"><?php _e('Text Area', WP_CMF_DOMAIN); ?></option>
                                         <option value="checkbox"><?php _e('Check Box', WP_CMF_DOMAIN); ?></option>
                                         <option value="radio"><?php _e('Radio', WP_CMF_DOMAIN); ?></option>
                                         <option value="select"><?php _e('Dropdown', WP_CMF_DOMAIN); ?></option>
@@ -116,7 +117,7 @@ $post_types=get_post_types(array(
                                 
                                 <td valign="top">
                                   <!-- Remove Field Button -->
-                                  <button ng-show="fieldset.options.length > 1" class="button-secondary remove-field" ng-click="removeField(fieldset.options, $index)">-</button>
+                                  <input type="button" value="-" ng-show="fieldset.options.length > 1" class="button-secondary remove-field" ng-click="removeField(fieldset.options, $index);" />
                                 </td>
                                 
                               </tr>
@@ -149,12 +150,50 @@ $post_types=get_post_types(array(
             <!-- Add Fields Set -->
             <input type="button" class="button-secondary" value="<?php _e( 'New FieldSet', WP_CMF_DOMAIN ); ?>" ng-click="addFieldSet(fieldsets)" />
             
-            <input name="cmf-save-fieldsets" type="submit" class="button-primary" value="Save All" />
+            <input name="cmf-save-fieldsets" type="submit" class="button-primary" value="<?php _e( 'Save All', WP_CMF_DOMAIN ) ?>" />
           </td>
           
           <!-- Right col -->
           <td>
-            <h2><?php _e( 'Elements' ); ?></h2>
+            <h2><?php _e( 'Help', WP_CMF_DOMAIN ); ?></h2>
+            
+            <p><?php _e( 'Hi there! This section allows you to manage your FieldSets and Fields for different Post Types.', WP_CMF_DOMAIN ) ?></p>
+            
+            <ul>
+              <li><a href="javascript:void(0);"><?php _e( 'Why this plugin?', WP_CMF_DOMAIN ); ?></a></li>
+              <li><a href="javascript:void(0);"><?php _e( 'What is FieldSet?', WP_CMF_DOMAIN ); ?></a></li>
+              <li><a href="javascript:void(0);"><?php _e( 'What is Field?', WP_CMF_DOMAIN ); ?></a></li>
+              <li><a href="javascript:void(0);"><?php _e( 'What is Post Type?', WP_CMF_DOMAIN ); ?></a></li>
+              <li><a href="javascript:void(0);"><?php _e( 'Front-end API', WP_CMF_DOMAIN ); ?></a></li>
+            </ul>
+            
+            <section>
+              <h4><?php _e( 'Why this plugin?', WP_CMF_DOMAIN ); ?></h4>
+              <p>You may notice there are a lot of plugins that do almost the same things as this one. But there always is a small difference.</p>
+              <p>In current case plugin allows to add REPEATABLE field sets for any Post Type. Meaning you can add any amount of the same field sets to a post or page while editing it.</p>
+              <p>Then you can output them in a post loop using built-in API.</p>
+            </section>
+            
+            <section>
+              <h4><?php _e( 'What is FieldSet?', WP_CMF_DOMAIN ); ?></h4>
+              <p>Because!</p>
+            </section>
+            
+            <section>
+              <h4><?php _e( 'What is Field?', WP_CMF_DOMAIN ); ?></h4>
+              <p>Because!</p>
+            </section>
+            
+            <section>
+              <h4><?php _e( 'What is Post Type?', WP_CMF_DOMAIN ); ?></h4>
+              <p>Because!</p>
+            </section>
+            
+            <section>
+              <h4><?php _e( 'Front-end API', WP_CMF_DOMAIN ); ?></h4>
+              <p>Because!</p>
+            </section>
+            
           </td>
         </tr>
       </table>

@@ -11,6 +11,7 @@
  * Text Domain: wp_cmf
  * Domain Path: /languages
  */
+
 /**
  * Copyright (c) 2014 Anton Korotkov (email : anton@eney-solutions.com.ua)
  *
@@ -28,11 +29,6 @@
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
  */
-/**
- * Built using grunt-wp-plugin
- * Copyright (c) 2013 10up, LLC
- * https://github.com/10up/grunt-wp-plugin
- */
 
 /**
  * Constants
@@ -42,6 +38,7 @@ define('WP_CMF_DOMAIN', 'wp_cmf');
 define('WP_CMF_URL', plugin_dir_url(__FILE__));
 define('WP_CMF_PATH', dirname(__FILE__) . '/');
 define('WP_CMF_TEMPLATES_PATH', WP_CMF_PATH . '/includes/templates/');
+define('WP_CMF_OPTION', 'wp_cmf_options');
 
 /**
  * Includes

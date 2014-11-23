@@ -22,19 +22,28 @@ $post_types=get_post_types(array(
         <tr valign="top">
           
           <!-- Left col -->
-          <td width="70%" ng-controller="cmfWorkspace">
+          <td width="70%" ng-controller="cmfWorkspace" ng-init="getFieldSets()">
             
             <!-- Col Title -->
             <h2><?php _e( 'Workspace', WP_CMF_DOMAIN ); ?></h2>
             
             <!-- Fields Set List -->
             <ul class="field-set-list">
+      
+              <li class="nothing-yet" ng-show="!fieldsets.length && !is_loading">
+                <?php _e( 'There are no FieldSets found yet.', WP_CMF_DOMAIN ); ?>
+                <a href="javascript:void(0);" ng-click="addFieldSet(fieldsets)"><?php _e( 'Add one!', WP_CMF_DOMAIN ); ?></a>
+              </li>
+              
+              <li class="loading" ng-show="is_loading">
+                <img src="<?php echo includes_url( 'images/wpspin.gif' ) ?>" /> <?php _e( 'Loading...', WP_CMF_DOMAIN ) ?>
+              </li>
               
               <!-- Fields Set -->
               <li class="field-set-item" ng-repeat="fieldset in fieldsets">
                 
                 <!-- Fields Set Name -->
-                <h3 ng-click="fieldset.show = !fieldset.show">{{fieldset.name}}</h3>
+                <h3 ng-click="fieldset.show = !fieldset.show">{{fieldset.name}} <small>[{{fieldset.post_type}}]</small></h3>
                 
                 <!-- Remove Field Set -->
                 <input type="button" class="button-secondary remove-field-set" value="<?php _e( 'Delete', WP_CMF_DOMAIN ); ?>" ng-click="removeFieldSet(fieldsets, $index)" />
@@ -54,16 +63,16 @@ $post_types=get_post_types(array(
                         <p>
                           <label>
                             <?php _e( 'FieldSet Name', WP_CMF_DOMAIN ); ?><br />
-                            <input required type="text" ng-model="fieldset.name" />
+                            <input name="fieldsets[{{$index}}][name]" required type="text" ng-model="fieldset.name" />
                           </label>
                         </p>
                         
                         <p>
                           <label>
                             <?php _e( 'Use for', WP_CMF_DOMAIN ); ?><br />
-                            <select ng-value="fieldset.post_type">
+                            <select name="fieldsets[{{$index}}][post_type]" ng-model="fieldset.post_type">
                               <?php foreach ($post_types as $post_type): ?>
-                              <option value="<?php echo esc_attr($post_type->name); ?>"><?php echo esc_html($post_type->name); ?></option>
+                              <option value="<?php echo esc_attr($post_type->name); ?>"><?php echo esc_html($post_type->label); ?></option>
                               <?php endforeach; ?>
                             </select>
                           </label>
@@ -87,14 +96,14 @@ $post_types=get_post_types(array(
                                 <td width="45%">
                                   <label>
                                     <?php _e('Field Name'); ?><br />
-                                    <input type="text" ng-value="option.name" />
+                                    <input name="fieldsets[{{$parent.$index}}][options][{{$index}}][name]" type="text" ng-value="option.name" />
                                   </label>
                                 </td>
                                 
                                 <td width="45%">
                                   <label>
                                     <?php _e('Field Input'); ?><br />
-                                    <select ng-model="option.input">
+                                    <select name="fieldsets[{{$parent.$index}}][options][{{$index}}][input]" ng-model="option.input">
                                       <optgroup label="<?php _e('Common', WP_CMF_DOMAIN); ?>">
                                         <option value="text"><?php _e('Text', WP_CMF_DOMAIN); ?></option>
                                         <option value="checkbox"><?php _e('Check Box', WP_CMF_DOMAIN); ?></option>
@@ -107,7 +116,7 @@ $post_types=get_post_types(array(
                                 
                                 <td valign="top">
                                   <!-- Remove Field Button -->
-                                  <button class="button-secondary remove-field" ng-click="removeField(fieldset.options, $index)">-</button>
+                                  <button ng-show="fieldset.options.length > 1" class="button-secondary remove-field" ng-click="removeField(fieldset.options, $index)">-</button>
                                 </td>
                                 
                               </tr>
@@ -117,7 +126,7 @@ $post_types=get_post_types(array(
                                   
                                   <label ng-show="fieldHasValues(option)">
                                     <?php _e('Values', WP_CMF_DOMAIN); ?><br />
-                                    <textarea ng-model="option.options"></textarea>
+                                    <textarea name="fieldsets[{{$parent.$index}}][options][{{$index}}][options]" ng-model="option.options"></textarea>
                                   </label>
                                   
                                 </td>
@@ -138,7 +147,9 @@ $post_types=get_post_types(array(
             </ul>
             
             <!-- Add Fields Set -->
-            <input type="button" class="button-secondary" value="+" ng-click="addFieldSet(fieldsets)" />
+            <input type="button" class="button-secondary" value="<?php _e( 'New FieldSet', WP_CMF_DOMAIN ); ?>" ng-click="addFieldSet(fieldsets)" />
+            
+            <input name="cmf-save-fieldsets" type="submit" class="button-primary" value="Save All" />
           </td>
           
           <!-- Right col -->
@@ -149,6 +160,5 @@ $post_types=get_post_types(array(
       </table>
 
     </section>
-
   </form>
 </div>

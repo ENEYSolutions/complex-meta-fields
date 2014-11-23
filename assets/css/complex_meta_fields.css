@@ -5,6 +5,18 @@
  * Copyright (c) 2014 Anton Korotkov
  * Licensed under the GPLv2+ license.
  */
+#cmf-fields-managed .field-set-list .nothing-yet,
+#cmf-fields-managed .field-set-list .loading {
+  border: 1px dashed #ddd;
+  background: white;
+  padding: 25px;
+}
+#cmf-fields-managed .field-set-list .nothing-yet img,
+#cmf-fields-managed .field-set-list .loading img {
+  display: block;
+  float: left;
+  margin-right: 20px;
+}
 #cmf-fields-managed .field-set-list .field-set-item {
   background: none repeat scroll 0 0 white;
   border: 1px solid #dddddd;

@@ -41,13 +41,25 @@ namespace ENEYSolutions {
      */
     public function __construct() {
       
-      $this->settings = CMF\Settings::instance();
+      //$this->settings = CMF\Settings::instance();
       
+      //** General actions */
       \add_action( 'admin_menu', array( $this, 'admin_menu' ) );
       \add_action( 'admin_init', array( $this, 'admin_init' ) );
       \add_action( 'admin_enqueue_scripts', array( $this , 'load_assets') );
+      
+      //** AJAX */
+      \add_action( 'wp_ajax_cmf_get_fieldsets', array( $this, 'ajax_get_fieldsets' ) );
     }
     
+    /**
+     * Get fieldsets list
+     */
+    public function ajax_get_fieldsets() {
+      die( json_encode( get_option( WP_CMF_OPTION ) ) );
+    }
+
+
     /**
      * Load assets
      */
@@ -112,6 +124,10 @@ namespace ENEYSolutions {
         'cmf-settings-general', 
         'cmf-setting-section'
       );
+      
+      if ( !empty($_POST['cmf-save-fieldsets']) ) {
+        update_option( WP_CMF_OPTION, !empty( $_POST['fieldsets'] ) ? $_POST['fieldsets'] : array() );
+      }
     }
 
     /**

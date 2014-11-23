@@ -15,9 +15,10 @@
   
   var _FieldSet = function() {
     return {
-      name: 'New Field Set',
+      show: true,
+      name: 'New FieldSet', 
       post_type: 'post',
-      options: []
+      options: [new _Field()]
     };
   }
 
@@ -28,42 +29,21 @@
   .module( 'cmfApp', [] )
   
   //** Create controller */
-  .controller( 'cmfWorkspace', function( $scope ){
-    $scope.fieldsets = [
-      {
-        name: 'Sub Company',
-        post_type: 'post',
-        options: [
-          {
-            input: 'text',
-            name: 'Company Name'
-          },
-          {
-            input: 'text',
-            name: 'CEO'
-          },
-          {
-            input: 'select',
-            name: 'Type',
-            options: 'big:Big,small:Small'
-          }
-        ]
-      },
-      {
-        name: 'Authors',
-        post_type: 'page',
-        options: [
-          {
-            input: 'text',
-            name: 'Author Name'
-          },
-          {
-            input: 'text',
-            name: 'Author Sirname'
-          }
-        ]
-      }
-    ];
+  .controller( 'cmfWorkspace', function( $scope, $http ){
+    
+    $scope.is_loading = false;
+    
+    /**
+     * GET FieldSets
+     * @returns {undefined}
+     */
+    $scope.getFieldSets = function() {
+      $scope.is_loading = true;
+      $http.get( ajaxurl + '?action=cmf_get_fieldsets' ).success(function(data) {
+        $scope.fieldsets = data;
+        $scope.is_loading = false;
+      });
+    };
     
     /**
      * Add Field Set
@@ -72,7 +52,7 @@
      */
     $scope.addFieldSet = function( fieldsets ) {
       fieldsets.push(new _FieldSet());
-    }
+    };
     
     /**
      * 
@@ -82,7 +62,7 @@
      */
     $scope.removeFieldSet = function( fieldsets, item ) {
       if ( confirm( 'Sure?' ) ) fieldsets.splice(item, 1);
-    }
+    };
     
     /**
      * Add new Field into field set
@@ -91,7 +71,7 @@
      */
     $scope.addField = function( options ) {
       options.push(new _Field());
-    }
+    };
     
     /**
      * Remove Field from field set
@@ -101,7 +81,7 @@
      */
     $scope.removeField = function( options, item ) {
       if ( confirm( 'Sure?' ) ) options.splice(item, 1);
-    }
+    };
     
     /**
      * Check whether to show values intup for field or not
@@ -110,9 +90,8 @@
      */
     $scope.fieldHasValues = function( option ) {
       return ['select', 'radio', 'checkbox'].indexOf( option.input ) !== -1;
-    }
+    };
     
-    
-  } );
+  });
 
 })(this);

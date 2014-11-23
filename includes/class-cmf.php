@@ -23,12 +23,6 @@ namespace ENEYSolutions {
     private $admin_pages = array();
     
     /**
-     *
-     * @var type 
-     */
-    public $settings;
-    
-    /**
      * Singleton
      * @return CMF
      */
@@ -40,8 +34,6 @@ namespace ENEYSolutions {
      * Construct
      */
     public function __construct() {
-      
-      //$this->settings = CMF\Settings::instance();
       
       //** General actions */
       \add_action( 'admin_menu', array( $this, 'admin_menu' ) );
@@ -72,6 +64,7 @@ namespace ENEYSolutions {
       //** Resgister Plugn Script */
       wp_register_script( 'cmf-core', WP_CMF_URL . 'assets/js/complex_meta_fields.js', false, WP_CMF_VERSION );
       
+      //** Register Plugin Styles */
       wp_register_style( 'cmf-core', WP_CMF_URL . 'assets/css/complex_meta_fields.css', false, WP_CMF_VERSION );
       
       switch ( $current_screen->id ) {
@@ -101,31 +94,11 @@ namespace ENEYSolutions {
     }
     
     /**
-     * 
+     * Admin Actions
      */
     public function admin_init() {
-      
-      register_setting(
-        'cmf-settings', 
-        'cmf-settings'
-      );
 
-      add_settings_section(
-        'cmf-setting-section', 
-        'General', 
-        array( $this->settings, 'general_section_description' ), 
-        'cmf-settings-general'
-      );
-
-      add_settings_field(
-        'eg_setting_post_types', 
-        'Activate for', 
-        array( $this->settings, 'general_post_types' ), 
-        'cmf-settings-general', 
-        'cmf-setting-section'
-      );
-      
-      if ( !empty($_POST['cmf-save-fieldsets']) ) {
+      if ( !empty( $_POST['cmf-save-fieldsets'] ) ) {
         update_option( WP_CMF_OPTION, !empty( $_POST['fieldsets'] ) ? $_POST['fieldsets'] : array() );
       }
     }
@@ -142,13 +115,6 @@ namespace ENEYSolutions {
      */
     public function ui_manage_page() {
       include WP_CMF_TEMPLATES_PATH . 'manage-page.php';
-    }
-    
-    /**
-     * Settings page cb
-     */
-    public function ui_settings_page() {
-      include WP_CMF_TEMPLATES_PATH . 'settings-page.php';
     }
   }
 }

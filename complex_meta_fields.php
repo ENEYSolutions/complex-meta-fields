@@ -43,7 +43,6 @@ define('WP_CMF_OPTION', 'wp_cmf_options');
 /**
  * Includes
  */
-require_once WP_CMF_PATH . 'includes/class-cmf-settings.php';
 require_once WP_CMF_PATH . 'includes/class-cmf.php';
 
 /**

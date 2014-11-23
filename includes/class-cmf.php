@@ -11,10 +11,9 @@ namespace ENEYSolutions {
   class CMF {
     
     /**
-     * Singleton holder
-     * @var CMF
+     * Apply singleton
      */
-    static $instance = null;
+    use Singleton;
     
     /**
      *
@@ -23,17 +22,17 @@ namespace ENEYSolutions {
     private $admin_pages = array();
     
     /**
-     * Singleton
-     * @return CMF
+     * Ajax Service
+     * @var type 
      */
-    static public function instance() {
-      return self::$instance ? self::$instance : self::$instance = new CMF();
-    }
+    private $ajax;
     
     /**
      * Construct
      */
     public function __construct() {
+      
+      $this->ajax = \ENEYSolutions\CMF\AJAX::getInstance();
       
       //** General actions */
       \add_action( 'admin_menu', array( $this, 'admin_menu' ) );
@@ -41,14 +40,7 @@ namespace ENEYSolutions {
       \add_action( 'admin_enqueue_scripts', array( $this , 'load_assets') );
       
       //** AJAX */
-      \add_action( 'wp_ajax_cmf_get_fieldsets', array( $this, 'ajax_get_fieldsets' ) );
-    }
-    
-    /**
-     * Get fieldsets list
-     */
-    public function ajax_get_fieldsets() {
-      die( json_encode( get_option( WP_CMF_OPTION ) ) );
+      \add_action( 'wp_ajax_cmf_get_fieldsets', array( $this->ajax, 'ajax_get_fieldsets' ) );
     }
 
 

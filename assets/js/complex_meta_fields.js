@@ -92,6 +92,10 @@
       return ['select', 'radio', 'checkbox'].indexOf( option.input ) !== -1;
     };
     
+  })
+  
+  .controller( 'cmfMetaBox', function( $scope ){
+    
   });
 
 })(this);

@@ -65,6 +65,7 @@ namespace ENEYSolutions {
         
         //** IF manage page */
         case $this->admin_pages['manage']:
+        case 'post':
           
           wp_enqueue_script( 'angular-core' );
           

@@ -16,7 +16,7 @@ namespace ENEYSolutions\CMF {
     use \ENEYSolutions\Singleton;
     
     /**
-     * Get fieldsets list
+     * Construct
      */
     public function construct() {
       
@@ -29,7 +29,7 @@ namespace ENEYSolutions\CMF {
 
           $fieldSet['name'],
 
-          'myplugin_meta_box_callback',
+          array( $this, 'fieldSetMetaBox' ),
 
           $fieldSet['post_type'],
 
@@ -40,6 +40,16 @@ namespace ENEYSolutions\CMF {
           $fieldSet
 		);
       }
+      
+    }
+    
+    public function fieldSetMetaBox( $the_post, $metabox ) {
+      
+      echo '<pre>';
+      print_r(func_get_args() );
+      echo '</pre>';
+      
+      include WP_CMF_TEMPLATES_PATH . 'metabox.php';
       
     }
   }

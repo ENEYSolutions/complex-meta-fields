@@ -43,7 +43,9 @@ define('WP_CMF_OPTION', 'wp_cmf_options');
 /**
  * Includes
  */
-require_once WP_CMF_PATH . 'includes/class-cmf-settings.php';
+require_once WP_CMF_PATH . 'includes/trait-singleton.php';
+require_once WP_CMF_PATH . 'includes/class-cmf-ajax.php';
+require_once WP_CMF_PATH . 'includes/class-cmf-metabox.php';
 require_once WP_CMF_PATH . 'includes/class-cmf.php';
 
 /**
@@ -51,7 +53,7 @@ require_once WP_CMF_PATH . 'includes/class-cmf.php';
  * @return CMF
  */
 function wp_cmf() {
-  return \ENEYSolutions\CMF::instance();
+  return \ENEYSolutions\CMF::getInstance();
 }
 
 /**

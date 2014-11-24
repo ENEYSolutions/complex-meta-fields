@@ -36,13 +36,13 @@ namespace ENEYSolutions {
       $this->metabox = \ENEYSolutions\CMF\MetaBox::getInstance();
       
       //** General actions */
-      \add_action( 'admin_menu', array( $this, 'admin_menu' ) );
-      \add_action( 'admin_init', array( $this, 'admin_init' ) );
-      \add_action( 'admin_enqueue_scripts', array( $this , 'load_assets') );
-      \add_action( 'add_meta_boxes', array( $this->metabox, 'construct' ) );
+      add_action( 'admin_menu', array( $this, 'admin_menu' ) );
+      add_action( 'admin_init', array( $this, 'admin_init' ) );
+      add_action( 'admin_enqueue_scripts', array( $this , 'load_assets') );
+      add_action( 'add_meta_boxes', array( $this->metabox, 'construct' ) );
       
       //** AJAX */
-      \add_action( 'wp_ajax_cmf_get_fieldsets', array( $this->ajax, 'ajax_get_fieldsets' ) );
+      add_action( 'wp_ajax_cmf_get_fieldsets', array( $this->ajax, 'ajax_get_fieldsets' ) );
     }
 
 

@@ -19,7 +19,7 @@ namespace ENEYSolutions\CMF {
      * Get fieldsets list
      */
     public function ajax_get_fieldsets() {
-      die( json_encode( get_option( WP_CMF_OPTION ) ) );
+      die( json_encode( !empty( $_ = get_option( WP_CMF_OPTION ) ) ? $_ : array() ) );
     }
   }
 }

@@ -62,6 +62,7 @@ namespace ENEYSolutions {
       
       //** Register Angular JS */
       wp_register_script( 'angular-core', '//ajax.googleapis.com/ajax/libs/angularjs/1.3.3/angular.js', false, '1.3.3' );
+      wp_register_script( 'angular-slugify', WP_CMF_URL . 'assets/js/vendor/angular-slugify.js', false, WP_CMF_VERSION );
       
       //** Resgister Plugn Script */
       wp_register_script( 'cmf-core', WP_CMF_URL . 'assets/js/complex_meta_fields.js', false, WP_CMF_VERSION );
@@ -74,6 +75,7 @@ namespace ENEYSolutions {
       
       //** Include it everywhere in admin */
       wp_enqueue_script( 'angular-core' );
+      wp_enqueue_script( 'angular-slugify' );
       wp_enqueue_script( 'cmf-core' );
       wp_enqueue_style( 'cmf-core' );
     }

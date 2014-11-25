@@ -69,6 +69,15 @@ $post_types=get_post_types(array(
                         
                         <p>
                           <label>
+                            <?php _e( 'Slug', WP_CMF_DOMAIN ); ?><br />
+                            <slug from="fieldset.name" to="fieldset.slug">
+                              <input name="fieldsets[{{$index}}][slug]" readonly="" type="text" ng-model="fieldset.slug" />
+                            </slug>
+                          </label>
+                        </p>
+                        
+                        <p>
+                          <label>
                             <?php _e( 'Use for', WP_CMF_DOMAIN ); ?><br />
                             <select name="fieldsets[{{$index}}][post_type]" ng-model="fieldset.post_type">
                               <?php foreach ($post_types as $post_type): ?>
@@ -96,8 +105,10 @@ $post_types=get_post_types(array(
                                 <td width="45%">
                                   <label>
                                     <?php _e('Field Name'); ?><br />
-                                    <input name="fieldsets[{{$parent.$index}}][options][{{$index}}][name]" required type="text" ng-value="option.name" />
+                                    <input name="fieldsets[{{$parent.$index}}][options][{{$index}}][name]" required type="text" ng-model="option.name" />
                                   </label>
+                                  <slug from="option.name" to="option.slug"></slug>
+                                  <input name="fieldsets[{{$parent.$index}}][options][{{$index}}][slug]" readonly type="text" ng-model="option.slug" />
                                 </td>
                                 
                                 <td width="45%">

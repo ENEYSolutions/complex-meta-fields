@@ -32,7 +32,7 @@
   var cmf = angular
   
   //** Create module */
-  .module( 'cmfApp', [] )
+  .module( 'cmfApp', ['slugifier'] )
   
   //** Create controller for Fields Builder */
   .controller( 'cmfWorkspace', function( $scope, $http ){
@@ -105,8 +105,16 @@
     
     $scope.templates_url = cmfL10N.templates_url;
     
-    $scope.initialize = function( args ) {
-      angular.extend( $scope, args );
+    $scope.fieldsets = [];
+    
+    $scope.initialize = function( args, data ) {
+      $scope.fieldsets.push( args );
+      console.log( $scope );
+    };
+    
+    $scope.addFieldSet = function( fieldsets ) {
+      console.log( $scope.fieldsets[0] );
+      fieldsets.push( angular.copy( $scope.fieldsets[0] ) );
     };
     
   });

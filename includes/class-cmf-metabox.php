@@ -46,7 +46,7 @@ namespace ENEYSolutions\CMF {
     public function fieldSetMetaBox( $the_post, $metabox ) {
       
       echo '<pre>';
-      print_r(func_get_args() );
+      print_r( func_get_args() );
       echo '</pre>';
       
       include WP_CMF_TEMPLATES_PATH . 'metabox.php';

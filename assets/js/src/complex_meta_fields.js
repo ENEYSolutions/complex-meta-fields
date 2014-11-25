@@ -12,12 +12,13 @@
   //** Field Constructor */
   var _Field = function() {
     return {
-      input: '',
+      input: 'text',
       name: '',
       options: ''
     };
-  }
+  };
   
+  //** FieldSet Constructor */
   var _FieldSet = function() {
     return {
       show: true,
@@ -25,7 +26,7 @@
       post_type: 'post',
       options: [new _Field()]
     };
-  }
+  };
 
   //** Start with Angular */
   var cmf = angular
@@ -33,7 +34,7 @@
   //** Create module */
   .module( 'cmfApp', [] )
   
-  //** Create controller */
+  //** Create controller for Fields Builder */
   .controller( 'cmfWorkspace', function( $scope, $http ){
     
     $scope.is_loading = false;
@@ -99,7 +100,14 @@
     
   })
   
+  //** Create Controller for MetaBox */
   .controller( 'cmfMetaBox', function( $scope ){
+    
+    $scope.templates_url = cmfL10N.templates_url;
+    
+    $scope.initialize = function( args ) {
+      angular.extend( $scope, args );
+    };
     
   });
 

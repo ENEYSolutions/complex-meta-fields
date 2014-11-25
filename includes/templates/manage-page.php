@@ -96,14 +96,14 @@ $post_types=get_post_types(array(
                                 <td width="45%">
                                   <label>
                                     <?php _e('Field Name'); ?><br />
-                                    <input name="fieldsets[{{$parent.$index}}][options][{{$index}}][name]" type="text" ng-value="option.name" />
+                                    <input name="fieldsets[{{$parent.$index}}][options][{{$index}}][name]" required type="text" ng-value="option.name" />
                                   </label>
                                 </td>
                                 
                                 <td width="45%">
                                   <label>
                                     <?php _e('Field Input'); ?><br />
-                                    <select name="fieldsets[{{$parent.$index}}][options][{{$index}}][input]" ng-model="option.input">
+                                    <select required name="fieldsets[{{$parent.$index}}][options][{{$index}}][input]" ng-model="option.input">
                                       <optgroup label="<?php _e('Common', WP_CMF_DOMAIN); ?>">
                                         <option value="text"><?php _e('Text Line', WP_CMF_DOMAIN); ?></option>
                                         <option value="textarea"><?php _e('Text Area', WP_CMF_DOMAIN); ?></option>

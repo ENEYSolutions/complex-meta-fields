@@ -98,17 +98,20 @@
   //** Create Controller for MetaBox */
   .controller( 'cmfMetaBox', function( $scope ){
     
+    //** Templates URL */
     $scope.templates_url = cmfL10N.templates_url;
     
+    //** Fields Collection */
     $scope.fieldsets = [];
     
-    $scope.initialize = function( args, data ) {
-      $scope.fieldsets.push( args );
+    //** Init function */
+    $scope.initialize = function( args ) { 
+      $scope.fieldsets = args;
       console.log( $scope );
     };
     
+    //** Add Fieldset function */
     $scope.addFieldSet = function( fieldsets ) {
-      console.log( $scope.fieldsets[0] );
       fieldsets.push( angular.copy( $scope.fieldsets[0] ) );
     };
     

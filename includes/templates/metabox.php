@@ -1,5 +1,5 @@
 <div ng-controller="cmfMetaBox">
-  <ul ng-init='initialize(<?php echo json_encode( !empty( $_ = $metabox['args'] ) ? $_ : array() ) ?>, <?php echo json_encode( !empty( $__ = $data ) ? $__ : array() ) ?>)'>
+  <ul ng-init='initialize(<?php echo json_encode( !empty( $_ = $return ) ? $_ : array() ) ?>)'>
 
     <li ng-repeat="fieldset in fieldsets">
 
@@ -7,13 +7,16 @@
       <ul>
 
         <!-- Field Item. Loads input templates -->
-        <li ng-repeat="field in fieldset.options" ng-include="templates_url + 'form/text.php'">
+        <li ng-repeat="field in fieldset.options" ng-include="templates_url + 'form/' + field.input + '.php'">
 
         </li>
 
       </ul>
+      
+      <hr />
 
     </li>
+    
 
   </ul>
 

@@ -134,27 +134,42 @@ $post_types=get_post_types(array(
                               </tr>
                               
                               <tr valign="top">
-                                <td colspan="2">
+                                <td colspan="3">
                                   
                                   <div ng-show="fieldHasValues(option)">
+                                    <br />
                                     <label>
-                                      <?php _e('Values', WP_CMF_DOMAIN); ?><br />
+                                      <?php _e('Options', WP_CMF_DOMAIN); ?>
                                     </label>
 
                                     <ul>
                                       <li ng-repeat="value in option.options">
-                                        <span>{{$index+1}}</span>
-                                        <input ng-model="value.label" name="" />
-                                        <input ng-model="value.key" name="" />
+                                        <table width="100%">
+                                          <tr>
+                                            <td width="5%">
+                                              <span>{{$index+1}}</span>
+                                            </td>
+                                            
+                                            <td width="45%">
+                                              <input type="text" required ng-model="value.label" name="fieldsets[{{$parent.$parent.$index}}][options][{{$parent.$index}}][options][{{$index}}][label]" />
+                                            </td>
+                                            
+                                            <td width="45%">
+                                              <slug from="value.label" to="value.key"></slug>
+                                              <input type="text" readonly ng-model="value.key" name="fieldsets[{{$parent.$parent.$index}}][options][{{$parent.$index}}][options][{{$index}}][key]" />
+                                            </td>
+                                            
+                                            <td width="5%">
+                                              <input type="button" value="-" ng-show="option.options.length > 1" class="button-secondary remove-field" ng-click="removeFieldValue(option.options, $index);" />
+                                            </td>
+                                          </tr>
+                                        </table>
                                       </li>
                                     </ul>
 
-                                    <div ng-click="addFieldValue(option.options)">+</div>
-
-                                    <!--<textarea name="fieldsets[{{$parent.$index}}][options][{{$index}}][options]" ng-model="option.options"></textarea>-->
+                                    <input type="button" value="<?php _e( 'Add Option', WP_CMF_DOMAIN ); ?>" class="button-secondary add-field" ng-click="addFieldValue(option.options)" />
                                   </div>
                                 </td>
-                                <td></td>
                               </tr>
                             </table>
 

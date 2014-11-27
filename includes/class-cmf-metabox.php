@@ -43,6 +43,20 @@ namespace ENEYSolutions\CMF {
       
     }
     
+    public function save_post( $post_id ) {
+
+      // If this is an autosave, our form has not been submitted, so we don't want to do anything.
+      if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) {
+        return $post_id;
+      }
+      
+      echo '<pre>';
+      print_r( $_POST );
+      echo '</pre>';
+      
+
+    }
+
     public function fieldSetMetaBox( $the_post, $metabox ) {
     
 //      echo $the_post->ID. ' - ' .$metabox['args']['slug'];
@@ -56,8 +70,8 @@ namespace ENEYSolutions\CMF {
           'tip-informatsii' => 'Простая информация',
           'tekst' => 'Просто текст',
           'mnozhestvennii-vibor' => array(
-            array( '1' => 'Один' ),
-            array( '2' => 'Два' )
+            'option-1' => 'Option 1',
+            'option-2' => 'Option 2'
           ),
           'isklyuchayuschii-vibor' => array( '2' => 'Два' ),
           'vipadashka' => array( '3' => 'Три' )

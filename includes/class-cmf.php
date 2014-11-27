@@ -41,6 +41,7 @@ namespace ENEYSolutions {
       add_action( 'admin_enqueue_scripts', array( $this , 'load_assets') );
       add_action( 'add_meta_boxes', array( $this->metabox, 'construct' ) );
       add_action( 'post_edit_form_tag', array( $this, 'post_edit_form_tag' ) );
+      add_action( 'save_post', array( $this->metabox, 'save_post' ) );
       
       //** AJAX */
       add_action( 'wp_ajax_cmf_get_fieldsets', array( $this->ajax, 'ajax_get_fieldsets' ) );

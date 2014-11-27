@@ -73,6 +73,16 @@
     };
     
     /**
+     * 
+     * @param {type} options
+     * @param {type} item
+     * @returns {undefined}
+     */
+    $scope.removeFieldValue = function( options, item ) {
+      if ( confirm( 'Sure?' ) ) options.splice(item, 1);
+    };
+    
+    /**
      * Add new Field into field set
      * @param {type} options
      * @returns {undefined}

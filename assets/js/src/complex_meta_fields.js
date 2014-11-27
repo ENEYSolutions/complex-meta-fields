@@ -9,12 +9,19 @@
 (function (window, undefined) {
   'use strict';
   
+  var _FieldValue = function() {
+    return {
+      key: '',
+      label: ''
+    };
+  };
+  
   //** Field Constructor */
   var _Field = function() {
     return {
       input: 'text',
       name: '',
-      options: ''
+      options: [new _FieldValue()]
     };
   };
   
@@ -77,6 +84,15 @@
      */
     $scope.addField = function( options ) {
       options.push(new _Field());
+    };
+    
+    /**
+     * 
+     * @param {type} options
+     * @returns {undefined}
+     */
+    $scope.addFieldValue = function( options ) {
+      options.push(new _FieldValue());
     };
     
     /**

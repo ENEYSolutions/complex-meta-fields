@@ -136,11 +136,23 @@ $post_types=get_post_types(array(
                               <tr valign="top">
                                 <td colspan="2">
                                   
-                                  <label ng-show="fieldHasValues(option)">
-                                    <?php _e('Values', WP_CMF_DOMAIN); ?><br />
-                                    <textarea name="fieldsets[{{$parent.$index}}][options][{{$index}}][options]" ng-model="option.options"></textarea>
-                                  </label>
-                                  
+                                  <div ng-show="fieldHasValues(option)">
+                                    <label>
+                                      <?php _e('Values', WP_CMF_DOMAIN); ?><br />
+                                    </label>
+
+                                    <ul>
+                                      <li ng-repeat="value in option.options">
+                                        <span>{{$index+1}}</span>
+                                        <input ng-model="value.label" name="" />
+                                        <input ng-model="value.key" name="" />
+                                      </li>
+                                    </ul>
+
+                                    <div ng-click="addFieldValue(option.options)">+</div>
+
+                                    <!--<textarea name="fieldsets[{{$parent.$index}}][options][{{$index}}][options]" ng-model="option.options"></textarea>-->
+                                  </div>
                                 </td>
                                 <td></td>
                               </tr>

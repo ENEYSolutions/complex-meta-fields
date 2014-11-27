@@ -151,7 +151,7 @@ $post_types=get_post_types(array(
                                             </td>
                                             
                                             <td width="45%">
-                                              <input type="text" required ng-model="value.label" name="fieldsets[{{$parent.$parent.$index}}][options][{{$parent.$index}}][options][{{$index}}][label]" />
+                                              <input type="text" ng-model="value.label" name="fieldsets[{{$parent.$parent.$index}}][options][{{$parent.$index}}][options][{{$index}}][label]" />
                                             </td>
                                             
                                             <td width="45%">

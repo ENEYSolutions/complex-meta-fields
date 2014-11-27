@@ -43,51 +43,41 @@ namespace ENEYSolutions\CMF {
       
     }
     
-    public function save_post( $post_id ) {
+    public function save_post($post_id) {
 
-      // If this is an autosave, our form has not been submitted, so we don't want to do anything.
+      //** Check if our nonce is set. */
+      if (!isset($_POST['cmf-metabox-nonce'])) {
+        return $post_id;
+      }
+
+      $nonce = $_POST['cmf-metabox-nonce'];
+
+      //** Verify that the nonce is valid. */
+      if (!wp_verify_nonce($nonce, 'cmf-metabox')) {
+        return $post_id;
+      }
+
+      //** If this is an autosave, our form has not been submitted, so we don't want to do anything. */
       if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) {
         return $post_id;
       }
-      
-      echo '<pre>';
-      print_r( $_POST );
-      echo '</pre>';
-      
 
+      if (!current_user_can('manage_options')) {
+        return $post_id;
+      }
+
+      if ( !empty( $_POST['cmf'] ) ) {
+        foreach( $_POST['cmf'] as $meta_key => $meta_value ) {
+          update_post_meta($post_id, $meta_key, $meta_value);
+        }
+      }
     }
 
     public function fieldSetMetaBox( $the_post, $metabox ) {
-    
-//      echo $the_post->ID. ' - ' .$metabox['args']['slug'];
-//      echo '<pre>';
-//      var_dump( $data = get_post_meta( $the_post->ID, $metabox['args']['slug'], 1 ) );
-//      echo '</pre>';
       
-      $data = array(
-          
-        array(
-          'tip-informatsii' => 'Простая информация',
-          'tekst' => 'Просто текст',
-          'mnozhestvennii-vibor' => array(
-            'option-1' => 'Option 1',
-            'option-2' => 'Option 2'
-          ),
-          'isklyuchayuschii-vibor' => array( '2' => 'Два' ),
-          'vipadashka' => array( '3' => 'Три' )
-        ),
-          
-        array(
-          'tip-informatsii' => 'Простая информация 2',
-          'tekst' => 'Просто текст 2',
-          'mnozhestvennii-vibor' => array(
-            array( '2' => 'Два' )
-          ),
-          'isklyuchayuschii-vibor' => array( '1' => 'Один' ),
-          'vipadashka' => array( '2' => 'Два' )
-        )
-          
-      );
+      wp_nonce_field( 'cmf-metabox', 'cmf-metabox-nonce' );
+    
+      $data = get_post_meta( $the_post->ID, $metabox['args']['slug'], 1 );
       
       //** Flush return array */
       $return = array();
@@ -103,7 +93,7 @@ namespace ENEYSolutions\CMF {
           
           if ( !empty( $tmp_object['options'] ) && is_array( $tmp_object['options'] ) ) {
             foreach( $tmp_object['options'] as $field_key => &$field ) {
-              $field['value'] = $fieldset_data[$field['slug']];
+              $field['value'] = !empty( $fieldset_data[$field['slug']] ) ? $fieldset_data[$field['slug']] : '';
             }
           }
           

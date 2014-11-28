@@ -2,7 +2,7 @@
   "name": "complex-meta-fields",
   "title": "Complex Meta Fields",
   "description": "Manage complex meta data for any post type.",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "homepage": "http://eney.solutions/complex-meta-fields",
   "author": {
     "name": "Anton Korotkov",

@@ -40,9 +40,18 @@ namespace ENEYSolutions {
       add_action( 'admin_init', array( $this, 'admin_init' ) );
       add_action( 'admin_enqueue_scripts', array( $this , 'load_assets') );
       add_action( 'add_meta_boxes', array( $this->metabox, 'construct' ) );
+      add_action( 'post_edit_form_tag', array( $this, 'post_edit_form_tag' ) );
+      add_action( 'save_post', array( $this->metabox, 'save_post' ) );
       
       //** AJAX */
       add_action( 'wp_ajax_cmf_get_fieldsets', array( $this->ajax, 'ajax_get_fieldsets' ) );
+    }
+    
+    /**
+     * Allow to use ng-app on edit post
+     */
+    function post_edit_form_tag() {
+      echo ' ng-app="cmfApp"';
     }
 
 
@@ -54,6 +63,7 @@ namespace ENEYSolutions {
       
       //** Register Angular JS */
       wp_register_script( 'angular-core', '//ajax.googleapis.com/ajax/libs/angularjs/1.3.3/angular.js', false, '1.3.3' );
+      wp_register_script( 'angular-slugify', WP_CMF_URL . 'assets/js/vendor/angular-slugify.js', false, WP_CMF_VERSION );
       
       //** Resgister Plugn Script */
       wp_register_script( 'cmf-core', WP_CMF_URL . 'assets/js/complex_meta_fields.js', false, WP_CMF_VERSION );
@@ -61,19 +71,12 @@ namespace ENEYSolutions {
       //** Register Plugin Styles */
       wp_register_style( 'cmf-core', WP_CMF_URL . 'assets/css/complex_meta_fields.css', false, WP_CMF_VERSION );
       
-      switch ( $current_screen->id ) {
-        
-        //** IF manage page */
-        case $this->admin_pages['manage']:
-          
-          wp_enqueue_script( 'angular-core' );
-          
-          break;
-        
-        //** For other cases */
-        default: break;
-      }
+      $translation_array = array( 'templates_url' => WP_CMF_TEMPLATES_URL );
+      wp_localize_script( 'cmf-core', 'cmfL10N', $translation_array );
       
+      //** Include it everywhere in admin */
+      wp_enqueue_script( 'angular-core' );
+      wp_enqueue_script( 'angular-slugify' );
       wp_enqueue_script( 'cmf-core' );
       wp_enqueue_style( 'cmf-core' );
     }

@@ -37,7 +37,8 @@ define('WP_CMF_VERSION', '0.1.0');
 define('WP_CMF_DOMAIN', 'wp_cmf');
 define('WP_CMF_URL', plugin_dir_url(__FILE__));
 define('WP_CMF_PATH', dirname(__FILE__) . '/');
-define('WP_CMF_TEMPLATES_PATH', WP_CMF_PATH . '/includes/templates/');
+define('WP_CMF_TEMPLATES_PATH', WP_CMF_PATH . 'includes/templates/');
+define('WP_CMF_TEMPLATES_URL', WP_CMF_URL . 'includes/templates/');
 define('WP_CMF_OPTION', 'wp_cmf_options');
 
 /**

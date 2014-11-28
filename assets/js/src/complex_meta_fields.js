@@ -9,15 +9,23 @@
 (function (window, undefined) {
   'use strict';
   
+  var _FieldValue = function() {
+    return {
+      key: '',
+      label: ''
+    };
+  };
+  
   //** Field Constructor */
   var _Field = function() {
     return {
-      input: '',
+      input: 'text',
       name: '',
-      options: ''
+      options: [new _FieldValue()]
     };
-  }
+  };
   
+  //** FieldSet Constructor */
   var _FieldSet = function() {
     return {
       show: true,
@@ -25,15 +33,15 @@
       post_type: 'post',
       options: [new _Field()]
     };
-  }
+  };
 
   //** Start with Angular */
   var cmf = angular
   
   //** Create module */
-  .module( 'cmfApp', [] )
+  .module( 'cmfApp', ['slugifier'] )
   
-  //** Create controller */
+  //** Create controller for Fields Builder */
   .controller( 'cmfWorkspace', function( $scope, $http ){
     
     $scope.is_loading = false;
@@ -70,12 +78,31 @@
     };
     
     /**
+     * 
+     * @param {type} options
+     * @param {type} item
+     * @returns {undefined}
+     */
+    $scope.removeFieldValue = function( options, item ) {
+      if ( confirm( 'Sure?' ) ) options.splice(item, 1);
+    };
+    
+    /**
      * Add new Field into field set
      * @param {type} options
      * @returns {undefined}
      */
     $scope.addField = function( options ) {
       options.push(new _Field());
+    };
+    
+    /**
+     * 
+     * @param {type} options
+     * @returns {undefined}
+     */
+    $scope.addFieldValue = function( options ) {
+      options.push(new _FieldValue());
     };
     
     /**
@@ -95,6 +122,32 @@
      */
     $scope.fieldHasValues = function( option ) {
       return ['select', 'radio', 'checkbox'].indexOf( option.input ) !== -1;
+    };
+    
+  })
+  
+  //** Create Controller for MetaBox */
+  .controller( 'cmfMetaBox', function( $scope ){
+    
+    //** Templates URL */
+    $scope.templates_url = cmfL10N.templates_url;
+    
+    //** Fields Collection */
+    $scope.fieldsets = [];
+    
+    //** Init function */
+    $scope.initialize = function( args, template ) { 
+      $scope.template = template;
+      $scope.fieldsets = args;
+    };
+    
+    //** Add Fieldset function */
+    $scope.addFieldSet = function( fieldsets ) {
+      fieldsets.push( angular.copy( $scope.template ) );
+    };
+    
+    $scope.removeFieldSet = function( fieldsets, item ) {
+      if ( confirm( 'Sure?' ) ) fieldsets.splice(item, 1);
     };
     
   });

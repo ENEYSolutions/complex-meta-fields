@@ -16,7 +16,7 @@ namespace ENEYSolutions\CMF {
     use \ENEYSolutions\Singleton;
     
     /**
-     * Get fieldsets list
+     * Construct
      */
     public function construct() {
       
@@ -29,7 +29,7 @@ namespace ENEYSolutions\CMF {
 
           $fieldSet['name'],
 
-          'myplugin_meta_box_callback',
+          array( $this, 'fieldSetMetaBox' ),
 
           $fieldSet['post_type'],
 
@@ -40,6 +40,71 @@ namespace ENEYSolutions\CMF {
           $fieldSet
 		);
       }
+      
+    }
+    
+    public function save_post($post_id) {
+
+      //** Check if our nonce is set. */
+      if (!isset($_POST['cmf-metabox-nonce'])) {
+        return $post_id;
+      }
+
+      $nonce = $_POST['cmf-metabox-nonce'];
+
+      //** Verify that the nonce is valid. */
+      if (!wp_verify_nonce($nonce, 'cmf-metabox')) {
+        return $post_id;
+      }
+
+      //** If this is an autosave, our form has not been submitted, so we don't want to do anything. */
+      if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) {
+        return $post_id;
+      }
+
+      if (!current_user_can('manage_options')) {
+        return $post_id;
+      }
+
+      if ( !empty( $_POST['cmf'] ) ) {
+        foreach( $_POST['cmf'] as $meta_key => $meta_value ) {
+          update_post_meta($post_id, $meta_key, $meta_value);
+        }
+      }
+    }
+
+    public function fieldSetMetaBox( $the_post, $metabox ) {
+      
+      wp_nonce_field( 'cmf-metabox', 'cmf-metabox-nonce' );
+    
+      $data = get_post_meta( $the_post->ID, $metabox['args']['slug'], 1 );
+      
+      //** Flush return array */
+      $return = array();
+      
+      //** If there is anything to merge */
+      if ( !empty( $data ) ) {
+        
+        //** Loop data fieldsets */
+        foreach( $data as $fieldset_key => $fieldset_data ) {
+          
+          //** Create initial template */
+          $tmp_object = $metabox['args'];
+          
+          if ( !empty( $tmp_object['options'] ) && is_array( $tmp_object['options'] ) ) {
+            foreach( $tmp_object['options'] as $field_key => &$field ) {
+              $field['value'] = !empty( $fieldset_data[$field['slug']] ) ? $fieldset_data[$field['slug']] : '';
+            }
+          }
+          
+          $return[] = $tmp_object;
+        }
+        
+      } else {
+        $return[] = $metabox['args'];
+      }
+      
+      include WP_CMF_TEMPLATES_PATH . 'metabox.php';
       
     }
   }

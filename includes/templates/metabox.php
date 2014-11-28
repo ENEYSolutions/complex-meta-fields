@@ -1,5 +1,5 @@
 <div ng-controller="cmfMetaBox">
-  <ul ng-init='initialize(<?php echo json_encode( !empty( $_ = $return ) ? $_ : array() ) ?>)'>
+  <ul ng-init='initialize(<?php echo json_encode( !empty( $_ = $return ) ? $_ : array() ) ?>, <?php echo json_encode( !empty( $__ = $metabox['args'] ) ? $__ : array() ) ?>)'>
 
     <li ng-repeat="fieldset in fieldsets">
 
@@ -14,13 +14,15 @@
       </ul>
       
       <hr />
+      
+      <div ng-click="removeFieldSet(fieldsets, $index)"> Delete </div>
 
     </li>
     
 
   </ul>
 
-  <div ng-click="addFieldSet(fieldsets)"> NEW </div>
+  <div ng-click="addFieldSet(fieldsets)"> Add New </div>
   
 </div>
 

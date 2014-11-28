@@ -136,14 +136,18 @@
     $scope.fieldsets = [];
     
     //** Init function */
-    $scope.initialize = function( args ) { 
+    $scope.initialize = function( args, template ) { 
+      $scope.template = template;
       $scope.fieldsets = args;
-      console.log( $scope );
     };
     
     //** Add Fieldset function */
     $scope.addFieldSet = function( fieldsets ) {
-      fieldsets.push( angular.copy( $scope.fieldsets[0] ) );
+      fieldsets.push( angular.copy( $scope.template ) );
+    };
+    
+    $scope.removeFieldSet = function( fieldsets, item ) {
+      if ( confirm( 'Sure?' ) ) fieldsets.splice(item, 1);
     };
     
   });

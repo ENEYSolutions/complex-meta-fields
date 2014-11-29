@@ -43,6 +43,11 @@ namespace ENEYSolutions\CMF {
       
     }
     
+    /**
+     * 
+     * @param type $post_id
+     * @return type
+     */
     public function save_post($post_id) {
 
       //** Check if our nonce is set. */
@@ -65,6 +70,14 @@ namespace ENEYSolutions\CMF {
       if (!current_user_can('manage_options')) {
         return $post_id;
       }
+      
+      if ( $cmf_settings = get_option( WP_CMF_OPTION ) ) {
+        if ( !empty( $cmf_settings ) && is_array( $cmf_settings ) ) {
+          foreach( $cmf_settings as $fieldset ) {
+            delete_post_meta( $post_id, $fieldset['slug'] );
+          }
+        }
+      }
 
       if ( !empty( $_POST['cmf'] ) ) {
         foreach( $_POST['cmf'] as $meta_key => $meta_value ) {
@@ -73,6 +86,11 @@ namespace ENEYSolutions\CMF {
       }
     }
 
+    /**
+     * 
+     * @param type $the_post
+     * @param type $metabox
+     */
     public function fieldSetMetaBox( $the_post, $metabox ) {
       
       wp_nonce_field( 'cmf-metabox', 'cmf-metabox-nonce' );
@@ -100,8 +118,6 @@ namespace ENEYSolutions\CMF {
           $return[] = $tmp_object;
         }
         
-      } else {
-        $return[] = $metabox['args'];
       }
       
       include WP_CMF_TEMPLATES_PATH . 'metabox.php';

@@ -1,3 +1,11 @@
+<?php
+
+/**
+ * Template for checkbox input
+ */
+
+?>
+
 <label>
   <b>{{field.name}}</b>
 </label>

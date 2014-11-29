@@ -1,3 +1,11 @@
+<?php
+
+/**
+ * Template for radio buttons
+ */
+
+?>
+
 <label>
   <b>{{field.name}}</b>
 </label>

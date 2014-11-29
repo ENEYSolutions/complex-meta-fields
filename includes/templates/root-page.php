@@ -1,3 +1,11 @@
+<?php
+
+/**
+ * Root plugin page UI
+ */
+
+?>
+
 <div class="wrap about-wrap">
 
   <h1><?php printf(__('Welcome to Complex Meta Fields&nbsp;%s'), WP_CMF_VERSION); ?></h1>

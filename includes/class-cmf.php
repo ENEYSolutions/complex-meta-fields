@@ -32,7 +32,10 @@ namespace ENEYSolutions {
      */
     public function __construct() {
       
+      //** Register AJAX Handler */
       $this->ajax =    \ENEYSolutions\CMF\AJAX::getInstance();
+      
+      //** Register metabox handler */
       $this->metabox = \ENEYSolutions\CMF\MetaBox::getInstance();
       
       //** General actions */
@@ -93,7 +96,6 @@ namespace ENEYSolutions {
      * Admin Actions
      */
     public function admin_init() {
-
       if ( !empty( $_POST['cmf-save-fieldsets'] ) ) {
         update_option( WP_CMF_OPTION, !empty( $_POST['fieldsets'] ) ? $_POST['fieldsets'] : array() );
       }

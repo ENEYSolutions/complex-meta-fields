@@ -1,3 +1,11 @@
+<?php
+
+/**
+ * Template for select
+ */
+
+?>
+
 <label>
   <b>{{field.name}}</b><br />
   

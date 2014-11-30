@@ -56,8 +56,40 @@ if ( !function_exists( 'cmf_the_meta' ) ) {
       return false;
     }
     
-    $wp_query->post->cmf[ $meta_key . '_current_object' ] = $wp_query->post->cmf[$meta_key][$wp_query->post->cmf[$meta_key.'_current']];
+    $wp_query->post->cmf[ 'current_object' ] = $wp_query->post->cmf[$meta_key][$wp_query->post->cmf[$meta_key.'_current']];
     $wp_query->post->cmf[$meta_key.'_current']++;
   }
   
+}
+
+if ( !function_exists( 'cmf_get_field' ) ) {
+  
+  /**
+   * Field getter
+   * 
+   * @global type $wp_query
+   * @param type $slug
+   * @return type
+   */
+  function cmf_get_field( $slug ) {
+    global $wp_query;
+    
+    if ( isset( $wp_query->post->cmf[ 'current_object' ][$slug] ) ) {
+      return $wp_query->post->cmf[ 'current_object' ][$slug];
+    }
+    
+    return null;
+  }
+}
+
+if ( !function_exists( 'cmf_the_field' ) ) {
+  
+  /**
+   * Print field
+   * 
+   * @param type $slug
+   */
+  function cmf_the_field( $slug ) {
+    echo cmf_get_field( $slug );
+  }
 }

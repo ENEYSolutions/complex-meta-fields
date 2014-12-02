@@ -84,3 +84,18 @@
 #cmf-fields-managed .field-set-list .field-set-item .expandable > table tr td .field-item .remove-field {
   float: right;
 }
+.metabox .fieldset {
+  background: none repeat scroll 0 0 #f3f3f3;
+  border: 1px solid #ddd;
+  border-radius: 3px;
+  box-shadow: 0 0 3px #ddd;
+  padding: 25px;
+}
+.metabox .fieldset .field {
+  margin-bottom: 25px;
+}
+.metabox .fieldset .field input[type="text"],
+.metabox .fieldset .field textarea,
+.metabox .fieldset .field select {
+  width: 100%;
+}

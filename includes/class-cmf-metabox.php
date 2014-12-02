@@ -6,7 +6,7 @@
 namespace ENEYSolutions\CMF {
   
   /**
-   * AJAX Service
+   * Metabox handler
    */
   class MetaBox {
     
@@ -20,9 +20,15 @@ namespace ENEYSolutions\CMF {
      */
     public function construct() {
       
+      //** Get current fieldsets */
       $fieldSets = !empty( $_ = get_option( WP_CMF_OPTION ) ) ? $_ : array();
       
+      //** For each field set create metabox */
       foreach( $fieldSets as $fieldSetKey => $fieldSet ) {
+        
+        /**
+         * @todo: Maybe add settings for some arguments here
+         */
         add_meta_box(
                 
           'cmf_metabox_'.$fieldSetKey,
@@ -43,6 +49,12 @@ namespace ENEYSolutions\CMF {
       
     }
     
+    /**
+     * Save post hook to save metadata
+     * 
+     * @param type $post_id
+     * @return type
+     */
     public function save_post($post_id) {
 
       //** Check if our nonce is set. */
@@ -62,10 +74,29 @@ namespace ENEYSolutions\CMF {
         return $post_id;
       }
 
+      /**
+       * If current user is admin
+       * 
+       * @todo: Maybe add option to control this via settings
+       */
       if (!current_user_can('manage_options')) {
         return $post_id;
       }
+      
+      /**
+       * First - clean current meta data
+       */
+      if ( $cmf_settings = get_option( WP_CMF_OPTION ) ) {
+        if ( !empty( $cmf_settings ) && is_array( $cmf_settings ) ) {
+          foreach( $cmf_settings as $fieldset ) {
+            delete_post_meta( $post_id, $fieldset['slug'] );
+          }
+        }
+      }
 
+      /**
+       * Update meta data with new values
+       */
       if ( !empty( $_POST['cmf'] ) ) {
         foreach( $_POST['cmf'] as $meta_key => $meta_value ) {
           update_post_meta($post_id, $meta_key, $meta_value);
@@ -73,6 +104,12 @@ namespace ENEYSolutions\CMF {
       }
     }
 
+    /**
+     * Actual metabox callback function
+     * 
+     * @param type $the_post
+     * @param type $metabox
+     */
     public function fieldSetMetaBox( $the_post, $metabox ) {
       
       wp_nonce_field( 'cmf-metabox', 'cmf-metabox-nonce' );
@@ -100,10 +137,9 @@ namespace ENEYSolutions\CMF {
           $return[] = $tmp_object;
         }
         
-      } else {
-        $return[] = $metabox['args'];
       }
       
+      //** Include UI */
       include WP_CMF_TEMPLATES_PATH . 'metabox.php';
       
     }

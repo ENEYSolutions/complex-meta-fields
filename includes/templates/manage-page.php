@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * Manage CMF page UI
+ */
+
 //** Public Post Types */
 $post_types=get_post_types(array(
    'public'   => true
@@ -50,6 +54,7 @@ $post_types=get_post_types(array(
                 
                 <div class="clear"></div>
                 
+                <!-- Expandable area -->
                 <div class="expandable" ng-show="fieldset.show">
                   
                   <hr />
@@ -60,6 +65,7 @@ $post_types=get_post_types(array(
                       <!-- Fields Set Settings -->
                       <td width="25%" class="left">
 
+                        <!-- Fieldset name field -->
                         <p>
                           <label>
                             <?php _e( 'FieldSet Name', WP_CMF_DOMAIN ); ?><br />
@@ -67,6 +73,7 @@ $post_types=get_post_types(array(
                           </label>
                         </p>
                         
+                        <!-- Fieldset slug -->
                         <p>
                           <label>
                             <?php _e( 'Slug', WP_CMF_DOMAIN ); ?><br />
@@ -76,6 +83,7 @@ $post_types=get_post_types(array(
                           </label>
                         </p>
                         
+                        <!-- Post Type selector -->
                         <p>
                           <label>
                             <?php _e( 'Use for', WP_CMF_DOMAIN ); ?><br />
@@ -95,13 +103,14 @@ $post_types=get_post_types(array(
                       </td>
                       <td class="right">
 
-                        <!-- Fields Set Options -->
+                        <!-- FieldSet Options -->
                         <ul>
                           <li class="field-item" ng-repeat="option in fieldset.options">
                             
                             <table width="100%" cellpadding="0" cellspacing="0">
                               <tr valign="top">
                                 
+                                <!-- Field Name and Slug -->
                                 <td width="45%">
                                   <label>
                                     <?php _e('Field Name'); ?><br />
@@ -111,17 +120,23 @@ $post_types=get_post_types(array(
                                   <input name="fieldsets[{{$parent.$index}}][options][{{$index}}][slug]" readonly type="text" ng-model="option.slug" />
                                 </td>
                                 
+                                <!-- Field type input -->
                                 <td width="45%">
                                   <label>
                                     <?php _e('Field Input'); ?><br />
                                     <select required name="fieldsets[{{$parent.$index}}][options][{{$index}}][input]" ng-model="option.input">
+                                      
+                                      <!-- @todo: Apply filter here -->
                                       <optgroup label="<?php _e('Common', WP_CMF_DOMAIN); ?>">
+                                        
                                         <option value="text"><?php _e('Text Line', WP_CMF_DOMAIN); ?></option>
                                         <option value="textarea"><?php _e('Text Area', WP_CMF_DOMAIN); ?></option>
                                         <option value="checkbox"><?php _e('Check Box', WP_CMF_DOMAIN); ?></option>
                                         <option value="radio"><?php _e('Radio', WP_CMF_DOMAIN); ?></option>
                                         <option value="select"><?php _e('Dropdown', WP_CMF_DOMAIN); ?></option>
+                                        
                                       </optgroup>
+                                      
                                     </select>
                                   </label>
                                 </td>

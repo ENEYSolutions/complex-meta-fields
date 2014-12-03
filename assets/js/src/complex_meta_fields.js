@@ -9,6 +9,7 @@
 (function (window, undefined) {
   'use strict';
   
+  //** Input variants values constructor */
   var _FieldValue = function() {
     return {
       key: '',
@@ -36,7 +37,7 @@
   };
 
   //** Start with Angular */
-  var cmf = angular
+  var cmf = window.cmf = angular
   
   //** Create module */
   .module( 'cmfApp', ['slugifier'] )
@@ -122,6 +123,27 @@
      */
     $scope.fieldHasValues = function( option ) {
       return ['select', 'radio', 'checkbox'].indexOf( option.input ) !== -1;
+    };
+    
+  })
+  
+  //** Create controller for help area */
+  .controller( 'cmfHelp', function( $scope ){
+    
+    //** Sections list */
+    $scope.sections = {};
+    
+    //** Init current sections */
+    $scope.init = function( sections ) {
+      $scope.sections = sections;
+    };
+    
+    //** Sections toggler */
+    $scope.toggleSection = function( section ){
+      for( var i in $scope.sections ) {
+        $scope.sections[i] = false;
+      }
+      $scope.sections[section] = true;
     };
     
   })

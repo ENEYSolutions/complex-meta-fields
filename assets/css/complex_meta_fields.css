@@ -84,6 +84,19 @@
 #cmf-fields-managed .field-set-list .field-set-item .expandable > table tr td .field-item .remove-field {
   float: right;
 }
+#cmf-fields-managed a.active {
+  color: red;
+}
+#cmf-fields-managed .api-functions {
+  background: none repeat scroll 0 0 white;
+  padding: 20px;
+}
+#cmf-fields-managed .api-functions li {
+  padding-top: 10px;
+}
+#cmf-fields-managed .api-functions li + li {
+  border-top: 1px solid #f3f3f3;
+}
 .metabox .fieldset {
   background: none repeat scroll 0 0 #f3f3f3;
   border: 1px solid #ddd;

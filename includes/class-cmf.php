@@ -11,9 +11,18 @@ namespace ENEYSolutions {
   class CMF {
     
     /**
-     * Apply singleton
+     * Instance holder
+     * @var type 
      */
-    use Singleton;
+    protected static $instance;
+
+    /**
+     * Singleton innit
+     * @return type
+     */
+    final public static function getInstance() {
+      return isset(static::$instance) ? static::$instance : static::$instance = new static;
+    }
     
     /**
      *

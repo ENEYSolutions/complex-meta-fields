@@ -1,9 +1,10 @@
-/*! Complex Meta Fields - v0.1.0
+/*! Complex Meta Fields - v0.2.0
  * http://eney.solutions/complex-meta-fields
  * Copyright (c) 2014; * Licensed GPLv2+ */
 (function (window, undefined) {
   'use strict';
   
+  //** Input variants values constructor */
   var _FieldValue = function() {
     return {
       key: '',
@@ -31,7 +32,7 @@
   };
 
   //** Start with Angular */
-  var cmf = angular
+  var cmf = window.cmf = angular
   
   //** Create module */
   .module( 'cmfApp', ['slugifier'] )
@@ -117,6 +118,27 @@
      */
     $scope.fieldHasValues = function( option ) {
       return ['select', 'radio', 'checkbox'].indexOf( option.input ) !== -1;
+    };
+    
+  })
+  
+  //** Create controller for help area */
+  .controller( 'cmfHelp', function( $scope ){
+    
+    //** Sections list */
+    $scope.sections = {};
+    
+    //** Init current sections */
+    $scope.init = function( sections ) {
+      $scope.sections = sections;
+    };
+    
+    //** Sections toggler */
+    $scope.toggleSection = function( section ){
+      for( var i in $scope.sections ) {
+        $scope.sections[i] = false;
+      }
+      $scope.sections[section] = true;
     };
     
   })

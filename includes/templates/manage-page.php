@@ -207,44 +207,85 @@ $post_types=get_post_types(array(
           </td>
           
           <!-- Right col -->
-          <td>
+          <td ng-controller="cmfHelp" ng-init="
+            init({
+              why_this_plugin:true,
+              what_is_fieldset:false,
+              what_is_field:false,
+              what_is_post_type:false,
+              front_end_api:false
+            })
+          ">
             <h2><?php _e( 'Help', WP_CMF_DOMAIN ); ?></h2>
             
             <p><?php _e( 'Hi there! This section allows you to manage your FieldSets and Fields for different Post Types.', WP_CMF_DOMAIN ) ?></p>
             
             <ul>
-              <li><a href="javascript:void(0);"><?php _e( 'Why this plugin?', WP_CMF_DOMAIN ); ?></a></li>
-              <li><a href="javascript:void(0);"><?php _e( 'What is FieldSet?', WP_CMF_DOMAIN ); ?></a></li>
-              <li><a href="javascript:void(0);"><?php _e( 'What is Field?', WP_CMF_DOMAIN ); ?></a></li>
-              <li><a href="javascript:void(0);"><?php _e( 'What is Post Type?', WP_CMF_DOMAIN ); ?></a></li>
-              <li><a href="javascript:void(0);"><?php _e( 'Front-end API', WP_CMF_DOMAIN ); ?></a></li>
+              <li><a ng-class="{active: sections.why_this_plugin}" ng-click="toggleSection('why_this_plugin')" href="javascript:void(0);"><?php _e( 'Why this plugin?', WP_CMF_DOMAIN ); ?></a></li>
+              <li><a ng-class="{active: sections.what_is_fieldset}" ng-click="toggleSection('what_is_fieldset')" href="javascript:void(0);"><?php _e( 'What is FieldSet?', WP_CMF_DOMAIN ); ?></a></li>
+              <li><a ng-class="{active: sections.what_is_field}" ng-click="toggleSection('what_is_field')" href="javascript:void(0);"><?php _e( 'What is Field?', WP_CMF_DOMAIN ); ?></a></li>
+              <li><a ng-class="{active: sections.what_is_post_type}" ng-click="toggleSection('what_is_post_type')" href="javascript:void(0);"><?php _e( 'What is Post Type?', WP_CMF_DOMAIN ); ?></a></li>
+              <li><a ng-class="{active: sections.front_end_api}" ng-click="toggleSection('front_end_api')" href="javascript:void(0);"><?php _e( 'Front-end API', WP_CMF_DOMAIN ); ?></a></li>
+              <li><a target="_blank" href="http://wordpress.org/plugins/"><?php _e( 'Support', WP_CMF_DOMAIN ); ?></a></li>
+              <li><a target="_blank" href="http://eney-solutions.com.ua/complex-meta-fields"><?php _e( 'More about plugin', WP_CMF_DOMAIN ); ?></a></li>
             </ul>
             
-            <section>
+            <section ng-show="sections.why_this_plugin">
               <h4><?php _e( 'Why this plugin?', WP_CMF_DOMAIN ); ?></h4>
-              <p>You may notice there are a lot of plugins that do almost the same things as this one. But there always is a small difference.</p>
-              <p>In current case plugin allows to add REPEATABLE field sets for any Post Type. Meaning you can add any amount of the same field sets to a post or page while editing it.</p>
-              <p>Then you can output them in a post loop using built-in API.</p>
+              <p><?php _e( 'You may notice there are a lot of plugins that do almost the same things as this one. But there always is a small difference.', WP_CMF_DOMAIN ) ?></p>
+              <p><?php _e( 'In current case plugin allows to add REPEATABLE field sets for any Post Type. Meaning you can add any amount of the same field sets to a post or page while editing it.', WP_CMF_DOMAIN ) ?></p>
+              <p><?php _e( 'Then you can output them in a post loop using built-in API.', WP_CMF_DOMAIN ); ?></p>
+              <p><?php _e( 'Moreover, it is light, simple and useful in the same time.', WP_CMF_DOMAIN ); ?></p>
             </section>
             
-            <section>
+            <section ng-show="sections.what_is_fieldset">
               <h4><?php _e( 'What is FieldSet?', WP_CMF_DOMAIN ); ?></h4>
-              <p>Because!</p>
+              <p><?php _e( 'FieldSet is simply a set of fields that you are going to use while editing posts. FieldSet may consist of any amount of fields inside and may be repeated multiple times in order to provide multiple objects into the post.', WP_CMF_DOMAIN ); ?></p>
+              <p><?php _e( 'When creating new FieldSet you will need to provide Name and select a post type to specify where you want this FieldSet to be used. FieldSet Slug is used to show FieldSet data on front-end and it is generated automatically depending on Name. See <b>Front-end API</b> for more.', WP_CMF_DOMAIN ); ?></p>
             </section>
             
-            <section>
+            <section ng-show="sections.what_is_field">
               <h4><?php _e( 'What is Field?', WP_CMF_DOMAIN ); ?></h4>
-              <p>Because!</p>
+              <p><?php _e( 'There is nothing special about Fields. It is simply html inputs of different types inside a FieldSets. There are some predefined types for common use. More types later!', WP_CMF_DOMAIN ); ?></p>
             </section>
             
-            <section>
+            <section ng-show="sections.what_is_post_type">
               <h4><?php _e( 'What is Post Type?', WP_CMF_DOMAIN ); ?></h4>
-              <p>Because!</p>
+              <p><?php _e( 'This question is not related to the plugin and Post Types are completely described here: ', WP_CMF_DOMAIN ) ?><a target="_blank" href="http://codex.wordpress.org/Post_Types">http://codex.wordpress.org/Post_Types</a></p>
             </section>
             
-            <section>
+            <section ng-show="sections.front_end_api">
               <h4><?php _e( 'Front-end API', WP_CMF_DOMAIN ); ?></h4>
-              <p>Because!</p>
+              <p><?php _e( 'Plugin has simple API for front-end that helps to work with FieldSets and Fields inside them.', WP_CMF_DOMAIN ); ?></p>
+              <p><?php _e( 'It works the way similar to standard post loop.', WP_CMF_DOMAIN ); ?></p>
+              <p><?php _e( '<b>API Functions</b>', WP_CMF_DOMAIN ); ?></p>
+              
+              <ul class="api-functions">
+                <li>
+                  <code>cmf_have_meta( $fieldset_slug )</code>
+                  <p><?php _e( 'An alias of <code>have_posts()</code> function. Need to use inside <code>have_posts()</code> loop. Returns true if there are FieldSets left which you can interact with. Accepts one agrument that is FieldSet Slug which you can find when creating new FieldSet.', WP_CMF_DOMAIN ); ?></p>
+                </li>
+                <li>
+                  <code>cmf_the_meta( $fieldset_slug )</code>
+                  <p><?php _e( 'An alias of <code>the_post()</code> function. Need to use inside <code>cmf_have_meta()</code> loop. Sets current FieldSet. Accepts one agrument that is FieldSet Slug which you can find when creating new FieldSet.', WP_CMF_DOMAIN ); ?></p>
+                </li>
+                <li>
+                  <code>cmf_the_field( $field_slug )</code>
+                  <p><?php _e( 'Function that actually prints field\'s value. Accepts one agrument that is Field Slug which you can find when creating new Field in some of the FieldSets.', WP_CMF_DOMAIN ); ?></p>
+                  <p><u><?php _e( 'Notice!', WP_CMF_DOMAIN ); ?></u> <?php _e( 'The value for field of type checkbox will be Array, so there is no need to use this function for this kind of type. Use <code>cmf_get_field( $field_slug )</code> instead.', WP_CMF_DOMAIN ); ?> </p>
+                </li>
+                <li>
+                  <code>cmf_get_field( $field_slug )</code>
+                  <p><?php _e( 'Function does the same as function above but returns value instead of printing. You are free to get the value of the field and do any manipulations with it before using. Accepts one agrument that is Field Slug which you can find when creating new Field in some of the FieldSets.', WP_CMF_DOMAIN ); ?></p>
+                </li>
+              </ul>
+              
+              <p><?php _e( 'If you need more custom things done with FieldSets then you always can use function <code>get_post_meta($post_id, $fieldset_slug)</code> to get FieldSets in any places of your code.', WP_CMF_DOMAIN ); ?></p>
+              
+              <p><?php _e( '<b>Very important!</b>', WP_CMF_DOMAIN ); ?></p>
+              
+              <p><?php _e( 'Always do <code>cmf_the_meta( $fieldset_slug )</code> inside cmf_have_meta loop in order to prevent infinite loop on your post page.', WP_CMF_DOMAIN ); ?></p>
+              
             </section>
             
           </td>

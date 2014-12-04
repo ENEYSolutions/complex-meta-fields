@@ -4,10 +4,13 @@
  * Metabox UI
  */
 
+ $_  = $return;
+ $__ = $metabox['args'];
+ 
 ?>
 
 <div class="metabox" ng-controller="cmfMetaBox">
-  <ul ng-init='initialize(<?php echo json_encode( !empty( $_ = $return ) ? $_ : array() ) ?>, <?php echo json_encode( !empty( $__ = $metabox['args'] ) ? $__ : array() ) ?>)'>
+  <ul ng-init='initialize(<?php echo json_encode( !empty( $_ ) ? $_ : array() ) ?>, <?php echo json_encode( !empty( $__ ) ? $__ : array() ) ?>)'>
     
     <li class="fieldset" ng-repeat="fieldset in fieldsets">
 

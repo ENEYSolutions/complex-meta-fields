@@ -30,7 +30,8 @@ namespace ENEYSolutions\CMF {
     public function construct() {
       
       //** Get current fieldsets */
-      $fieldSets = !empty( $_ = get_option( WP_CMF_OPTION ) ) ? $_ : array();
+	  $_ = get_option( WP_CMF_OPTION );
+      $fieldSets = !empty( $_ ) ? $_ : array();
       
       //** For each field set create metabox */
       foreach( $fieldSets as $fieldSetKey => $fieldSet ) {

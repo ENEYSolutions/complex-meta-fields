@@ -4,7 +4,7 @@ Donate link:       http://eney-solutions.com.ua/complex-meta-fields
 Tags:              post, meta, fields, complex, multiple, repeatable, post type
 Requires at least: 4.0
 Tested up to:      4.0
-Stable tag:        1.0.0
+Stable tag:        1.0.1
 License:           GPLv2 or later
 License URI:       http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -57,14 +57,17 @@ This question is not related to the plugin and Post Types are completely describ
 
 == Changelog ==
 
-= 0.1.0 =
-* First release
+= 1.0.1 =
+* Different small fixes
+
+= 1.0.0 =
+* First public release
 
 = 0.2.0 =
 * Raw functionality
 
-= 1.0.0 =
-* First public release
+= 0.1.0 =
+* First release
 
 == Upgrade Notice ==
 

@@ -16,35 +16,23 @@
 
     <div class="feature-section col two-col">
       <div class="col-1">
-        <h3><?php _e('Build your content easily'); ?></h3>
-        <p><?php _e('Create custom complex fields for your posts or any other post types. Handy, real-time responsive drag-n-drop interface is really easy to manage.'); ?></p>
+        <h3><?php _e('Build your content easily', WP_CMF_VERSION); ?></h3>
+        <p><?php _e('Create custom complex fields for your posts or any other post types. Handy, real-time responsive interface is really easy to manage.', WP_CMF_VERSION); ?></p>
       </div>
       <div class="col-2 last-feature">
-        <img src="//s.w.org/images/core/4.0/media.jpg" />
+        <img src="<?php echo WP_CMF_URL . 'images/screenshot-1.jpg' ?>" />
       </div>
     </div>
 
     <hr />
 
     <div class="feature-section col two-col">
-      <div class="col-1">
-        <img src="//s.w.org/images/core/4.0/media.jpg" />
+      <div class="col-2">
+        <img src="<?php echo WP_CMF_URL . 'images/screenshot-2.jpg' ?>" />
       </div>
-      <div class="col-2 last-feature">
-        <h3><?php _e('Simple settings'); ?></h3>
-        <p><?php _e('There is no bunch of useless options and settings. Just select where you need to use complex fields.'); ?></p>
-      </div>
-    </div>
-
-    <hr />
-
-    <div class="feature-section col two-col">
-      <div class="col-1">
-        <h3><?php _e('Convenience'); ?></h3>
-        <p><?php _e('Add, edit, sort or delete complex fields with single click when editing post.'); ?></p>
-      </div>
-      <div class="col-2 last-feature">
-        <img src="//s.w.org/images/core/4.0/media.jpg" />
+      <div class="col-1 last-feature">
+        <h3><?php _e('Convenience', WP_CMF_VERSION); ?></h3>
+        <p><?php _e('Add, edit, sort or delete complex fields with single click when editing post.', WP_CMF_VERSION); ?></p>
       </div>
     </div>
 
@@ -53,27 +41,27 @@
   <hr />
 
   <div class="changelog under-the-hood">
-    <h3><?php _e('Even more'); ?></h3>
+    <h3><?php _e('Even more', WP_CMF_VERSION); ?></h3>
 
     <div class="feature-section col three-col">
       <div>
-        <h4><?php _e('Front-end API'); ?></h4>
-        <p><?php _e('Use predefined template functions to control displaying of complex fields.'); ?></p>
+        <h4><?php _e('Front-end API', WP_CMF_VERSION); ?></h4>
+        <p><?php _e('Use predefined template functions to control displaying of complex fields.', WP_CMF_VERSION); ?></p>
       </div>
       <div>
-        <h4><?php _e('Complete support'); ?></h4>
-        <p><?php _e('We guarantee answers to any questions in plugin\'s support threads on WordPress.org'); ?></p>
+        <h4><?php _e('Complete support', WP_CMF_VERSION); ?></h4>
+        <p><?php _e('We guarantee answers to any questions in plugin\'s support threads on WordPress.org', WP_CMF_VERSION); ?></p>
       </div>
       <div class="last-feature">
-        <h4><?php _e('Future Upgrades'); ?></h4>
-        <p><?php _e('Our aim is to make useful plugins and keep them up to date with modern needs.'); ?></p>
+        <h4><?php _e('Future Upgrades', WP_CMF_VERSION); ?></h4>
+        <p><?php _e('Our aim is to make useful plugins and keep them up to date with modern needs.', WP_CMF_VERSION); ?></p>
       </div>
     </div>
 
     <hr />
 
     <div class="return-to-dashboard">
-      <a href="http://eney.solutions"><?php _e('Please visit plugin documentation and useful articles. Rate, discuss, comment and ask for help.') ?></a>
+      <a href="http://eney.solutions"><?php _e('Please visit plugin documentation and useful articles. Rate, discuss, comment and ask for help.', WP_CMF_VERSION) ?></a>
     </div>
 
   </div>

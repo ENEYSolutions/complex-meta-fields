@@ -226,7 +226,7 @@ $post_types=get_post_types(array(
               <li><a ng-class="{active: sections.what_is_field}" ng-click="toggleSection('what_is_field')" href="javascript:void(0);"><?php _e( 'What is Field?', WP_CMF_DOMAIN ); ?></a></li>
               <li><a ng-class="{active: sections.what_is_post_type}" ng-click="toggleSection('what_is_post_type')" href="javascript:void(0);"><?php _e( 'What is Post Type?', WP_CMF_DOMAIN ); ?></a></li>
               <li><a ng-class="{active: sections.front_end_api}" ng-click="toggleSection('front_end_api')" href="javascript:void(0);"><?php _e( 'Front-end API', WP_CMF_DOMAIN ); ?></a></li>
-              <li><a target="_blank" href="http://wordpress.org/plugins/"><?php _e( 'Support', WP_CMF_DOMAIN ); ?></a></li>
+              <li><a target="_blank" href="https://wordpress.org/support/plugin/complex-meta-fields"><?php _e( 'Support', WP_CMF_DOMAIN ); ?></a></li>
               <li><a target="_blank" href="http://eney-solutions.com.ua/complex-meta-fields"><?php _e( 'More about plugin', WP_CMF_DOMAIN ); ?></a></li>
             </ul>
             

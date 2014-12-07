@@ -1,9 +1,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Complex Meta Fields\n"
-"POT-Creation-Date: 2014-12-07 12:34+0200\n"
-"PO-Revision-Date: 2014-12-07 12:43+0200\n"
-"Last-Translator: \n"
+"POT-Creation-Date: 2014-12-07 13:58+0200\n"
+"PO-Revision-Date: 2014-12-07 13:58+0200\n"
+"Last-Translator: Anton Korotkoff <anton@eney-solutions.com.ua>\n"
 "Language-Team: ENEY Solutions <anton@eney-solutions.com.ua>\n"
 "Language: ru_RU\n"
 "MIME-Version: 1.0\n"
@@ -26,11 +26,15 @@ msgstr "Complex Meta Fields Приветствие"
 msgid "CMF"
 msgstr "CMF"
 
-#: includes/class-cmf.php:101
+#: includes/class-cmf.php:101 includes/class-cmf.php:102
 msgid "Complex Meta Fields"
 msgstr "Complex Meta Fields"
 
 #: includes/class-cmf.php:101
+msgid "Welcome"
+msgstr "Приветствие"
+
+#: includes/class-cmf.php:102
 msgid "Manage"
 msgstr "Управление"
 
@@ -172,6 +176,8 @@ msgid ""
 "You may notice there are a lot of plugins that do almost the same things as "
 "this one. But there always is a small difference."
 msgstr ""
+"Можно заметить, что плагинов, которые делают почти тоже самое, очень много. "
+"Но всегда есть небольшие отличия."
 
 #: includes/templates/manage-page.php:236
 msgid ""
@@ -179,14 +185,17 @@ msgid ""
 "Type. Meaning you can add any amount of the same field sets to a post or "
 "page while editing it."
 msgstr ""
+"В данном случае плагин позволяет добавлять ПОВТОРЯЮЩИЕСЯ наборы полей для "
+"любых типов записей. Имеется ввиду, что вы можете добавить любое количество "
+"одинаковых наборов полей в запись или страницу во время редактирования."
 
 #: includes/templates/manage-page.php:237
 msgid "Then you can output them in a post loop using built-in API."
-msgstr ""
+msgstr "После этого вы сможете выводить их цикле постов, используя API."
 
 #: includes/templates/manage-page.php:238
 msgid "Moreover, it is light, simple and useful in the same time."
-msgstr ""
+msgstr "Более того, плагин легкий, простой и полезный в то же время."
 
 #: includes/templates/manage-page.php:243
 msgid ""
@@ -194,6 +203,10 @@ msgid ""
 "posts. FieldSet may consist of any amount of fields inside and may be "
 "repeated multiple times in order to provide multiple objects into the post."
 msgstr ""
+"Набор полей это просто список полей, которые вы собираетесь использовать при "
+"редактировании записей или страниц. Набор полей может состоять из любого "
+"количества полей внутри и может быть добавлен много раз, чтобы добавить "
+"несколько объектов в запись или страницу."
 
 #: includes/templates/manage-page.php:244
 msgid ""
@@ -202,6 +215,10 @@ msgid ""
 "used to show FieldSet data on front-end and it is generated automatically "
 "depending on Name. See <b>Front-end API</b> for more."
 msgstr ""
+"При создании нового Набора полей вам нужно будет указать Имя и выбрать тип "
+"записи, чтобы указать где именно вы хотите использовать данный набор. Слаг "
+"набора полей используется при выводе данных на фронтенд и генерируется "
+"автоматически. См. <b>Фронтенд API</b>."
 
 #: includes/templates/manage-page.php:249
 msgid ""
@@ -209,26 +226,33 @@ msgid ""
 "types inside a FieldSets. There are some predefined types for common use. "
 "More types later!"
 msgstr ""
+"Ничего необычного про поля. Это просто HTML input разного типа в составе "
+"Набора полей. Сейчас доступны несколько типов для базового использования. "
+"Скоро будет больше!"
 
 #: includes/templates/manage-page.php:254
 msgid ""
 "This question is not related to the plugin and Post Types are completely "
 "described here: "
 msgstr ""
+"Этот вопрос не относится к плагину. Вся информация о типах записей "
+"предоставлена тут:"
 
 #: includes/templates/manage-page.php:259
 msgid ""
 "Plugin has simple API for front-end that helps to work with FieldSets and "
 "Fields inside them."
 msgstr ""
+"Плагин имеет простой API для фронтенда, который поможет вывести наборы полей "
+"для отображения."
 
 #: includes/templates/manage-page.php:260
 msgid "It works the way similar to standard post loop."
-msgstr ""
+msgstr "Принцип работы похож на стандартный Post Loop."
 
 #: includes/templates/manage-page.php:261
 msgid "<b>API Functions</b>"
-msgstr ""
+msgstr "<b>API Функции</b>"
 
 #: includes/templates/manage-page.php:266
 msgid ""
@@ -237,6 +261,10 @@ msgid ""
 "which you can interact with. Accepts one agrument that is FieldSet Slug "
 "which you can find when creating new FieldSet."
 msgstr ""
+"Работает по принципу функции <code>have_posts()</code>. Нужно использовать "
+"внутри цикла <code>have_posts()</code>. Возвращает TRUE если еще есть Наборы "
+"полей, с которыми можно работать. Принимает 1 аргумент в виде Слага набора, "
+"который вы можете найти при создании нового Набора полей."
 
 #: includes/templates/manage-page.php:270
 msgid ""
@@ -244,6 +272,10 @@ msgid ""
 "<code>cmf_have_meta()</code> loop. Sets current FieldSet. Accepts one "
 "agrument that is FieldSet Slug which you can find when creating new FieldSet."
 msgstr ""
+"Работает по принципу функции <code>the_post()</code>. Нужно использовать "
+"внутри цикла <code>cmf_have_meta()</code>. Устанавливает текущий Набор полей "
+"для работы. Принимает 1 аргумент в виде Слага набора, который вы можете "
+"найти при создании нового Набора полей."
 
 #: includes/templates/manage-page.php:274
 msgid ""
@@ -251,10 +283,12 @@ msgid ""
 "Field Slug which you can find when creating new Field in some of the "
 "FieldSets."
 msgstr ""
+"Функция, которая печатает значение поля. Принимает 1 аргумент в виде Слага "
+"Поля, который вы можете найти при создании нового Поля в одном из Наборов."
 
 #: includes/templates/manage-page.php:275
 msgid "Notice!"
-msgstr ""
+msgstr "Важно!"
 
 #: includes/templates/manage-page.php:275
 msgid ""
@@ -262,6 +296,9 @@ msgid ""
 "use this function for this kind of type. Use "
 "<code>cmf_get_field( $field_slug )</code> instead."
 msgstr ""
+"Значение поля с типом Множественный Выбор будет Массив, поэтому нет "
+"необходимости использовать эту функцию для данного типа. Используйте "
+"<code>cmf_get_field( $field_slug )</code>."
 
 #: includes/templates/manage-page.php:279
 msgid ""
@@ -270,6 +307,10 @@ msgid ""
 "manipulations with it before using. Accepts one agrument that is Field Slug "
 "which you can find when creating new Field in some of the FieldSets."
 msgstr ""
+"Функция делает тоже самое что и функция выше, но возвращает значение вместо "
+"того, чтобы печатать. Это позволяет сначала получить значение, произвести "
+"манипуляции с ним, а потом использовать. Принимает 1 аргумент в виде Слага "
+"Поля, который вы можете найти при создании нового Поля в одном из Наборов."
 
 #: includes/templates/manage-page.php:283
 msgid ""
@@ -277,25 +318,30 @@ msgid ""
 "function <code>get_post_meta($post_id, $fieldset_slug)</code> to get "
 "FieldSets in any places of your code."
 msgstr ""
+"Если нужно более нестандартно использовать Наборы полей, то всегда можно "
+"получить к ним доступ с помощью функции <code>get_post_meta($post_id, "
+"$fieldset_slug)</code> в любом месте вашего кода."
 
 #: includes/templates/manage-page.php:285
 msgid "<b>Very important!</b>"
-msgstr ""
+msgstr "<b>Очень важно!</b>"
 
 #: includes/templates/manage-page.php:287
 msgid ""
 "Always do <code>cmf_the_meta( $fieldset_slug )</code> inside cmf_have_meta "
 "loop in order to prevent infinite loop on your post page."
 msgstr ""
+"Всегда вызывайте <code>cmf_the_meta( $fieldset_slug )</code> внутри цикла "
+"cmf_have_meta чтобы предотвратить бесконечный цикл на странице записи."
 
 #: includes/templates/metabox.php:34
 msgid "Add New"
-msgstr ""
+msgstr "Добавить"
 
 #: includes/templates/root-page.php:11
 #, php-format
 msgid "Welcome to Complex Meta Fields&nbsp;%s"
-msgstr ""
+msgstr "Добро пожаловать в Complex Meta Fields&nbsp;%s"
 
 #: includes/templates/root-page.php:13
 msgid ""
@@ -303,56 +349,72 @@ msgid ""
 "need. Complex meta field is a field that contains some other sub-fields. Any "
 "amount of complex fields can be added to a post during editing."
 msgstr ""
+"Плагин позволяет настраивать сложные мета поля для любых типов записей. "
+"Комплексные мета поля это поля, состоящие из нескольких простых полей. Любое "
+"количество сложных полей может быть добавлено в запись во время "
+"редактирования."
 
 #: includes/templates/root-page.php:19
 msgid "Build your content easily"
-msgstr ""
+msgstr "Просто добавляйте контент"
 
 #: includes/templates/root-page.php:20
 msgid ""
 "Create custom complex fields for your posts or any other post types. Handy, "
 "real-time responsive interface is really easy to manage."
 msgstr ""
+"Создавайте нестандартные сложные поля для ваших записей или любых других "
+"типов полей. Удобный, отзывчивый интерфейс, очень простой в использовании."
 
 #: includes/templates/root-page.php:34
 msgid "Convenience"
-msgstr ""
+msgstr "Удобство"
 
 #: includes/templates/root-page.php:35
 msgid ""
 "Add, edit, sort or delete complex fields with single click when editing post."
 msgstr ""
+"Добавляйте, редактируйте, удаляйте наборы полей в один клик на странице "
+"редактирования."
 
 #: includes/templates/root-page.php:44
 msgid "Even more"
-msgstr ""
+msgstr "Более того"
 
 #: includes/templates/root-page.php:49
 msgid ""
 "Use predefined template functions to control displaying of complex fields."
 msgstr ""
+"Используйте готовые предустановленные функции для управления отображением "
+"полей."
 
 #: includes/templates/root-page.php:52
 msgid "Complete support"
-msgstr ""
+msgstr "Полная поддержка"
 
 #: includes/templates/root-page.php:53
 msgid ""
 "We guarantee answers to any questions in plugin's support threads on "
 "WordPress.org"
 msgstr ""
+"Мы гарантируем ответы на любые вопросы на форуме поддержки на сайте "
+"WordPress.org"
 
 #: includes/templates/root-page.php:56
 msgid "Future Upgrades"
-msgstr ""
+msgstr "Будущие обновления"
 
 #: includes/templates/root-page.php:57
 msgid ""
 "Our aim is to make useful plugins and keep them up to date with modern needs."
 msgstr ""
+"Наша цель - создавать полезные плагины и поддерживать их в соответствие с "
+"современными нуждами."
 
 #: includes/templates/root-page.php:64
 msgid ""
 "Please visit plugin documentation and useful articles. Rate, discuss, "
 "comment and ask for help."
 msgstr ""
+"Пожалуйста посетите страницу документации плагина и полезные статьи. "
+"Оценивайте, обсуждайте, комментируйте и обращайтесь за помощью."

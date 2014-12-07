@@ -113,7 +113,7 @@ $post_types=get_post_types(array(
                                 <!-- Field Name and Slug -->
                                 <td width="45%">
                                   <label>
-                                    <?php _e('Field Name'); ?><br />
+                                    <?php _e('Field Name', WP_CMF_DOMAIN); ?><br />
                                     <input name="fieldsets[{{$parent.$index}}][options][{{$index}}][name]" required type="text" ng-model="option.name" />
                                   </label>
                                   <slug from="option.name" to="option.slug"></slug>
@@ -123,7 +123,7 @@ $post_types=get_post_types(array(
                                 <!-- Field type input -->
                                 <td width="45%">
                                   <label>
-                                    <?php _e('Field Input'); ?><br />
+                                    <?php _e('Field Input', WP_CMF_DOMAIN); ?><br />
                                     <select required name="fieldsets[{{$parent.$index}}][options][{{$index}}][input]" ng-model="option.input">
                                       
                                       <!-- @todo: Apply filter here -->

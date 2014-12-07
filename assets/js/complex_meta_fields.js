@@ -1,4 +1,4 @@
-/*! Complex Meta Fields - v1.0.1
+/*! Complex Meta Fields - v1.0.2
  * http://eney-solutions.com.ua/complex-meta-fields
  * Copyright (c) 2014; * Licensed GPLv2+ */
 (function (window, undefined) { 

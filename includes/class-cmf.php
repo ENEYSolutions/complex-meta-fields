@@ -55,6 +55,9 @@ namespace ENEYSolutions {
       add_action( 'post_edit_form_tag', array( $this, 'post_edit_form_tag' ) );
       add_action( 'save_post', array( $this->metabox, 'save_post' ) );
       
+      //** Filters */
+      add_filter( WP_CMF_DOMAIN . '_js_l10n', array( $this, 'l10n' ) );
+      
       //** AJAX */
       add_action( 'wp_ajax_cmf_get_fieldsets', array( $this->ajax, 'ajax_get_fieldsets' ) );
     }
@@ -64,6 +67,17 @@ namespace ENEYSolutions {
      */
     function post_edit_form_tag() {
       echo ' ng-app="cmfApp"';
+    }
+    
+    /**
+     * Localization strings
+     * 
+     * @param array $array
+     * @return type
+     */
+    function l10n( $array ) {
+      $array['sure'] = __('Sure?', WP_CMF_DOMAIN);
+      return $array;
     }
 
 
@@ -83,7 +97,7 @@ namespace ENEYSolutions {
       //** Register Plugin Styles */
       wp_register_style( 'cmf-core', WP_CMF_URL . 'assets/css/complex_meta_fields.css', false, WP_CMF_VERSION );
       
-      $translation_array = array( 'templates_url' => WP_CMF_TEMPLATES_URL );
+      $translation_array = apply_filters( WP_CMF_DOMAIN . '_js_l10n', array( 'templates_url' => WP_CMF_TEMPLATES_URL ) );
       wp_localize_script( 'cmf-core', 'cmfL10N', $translation_array );
       
       //** Include it everywhere in admin */
@@ -98,6 +112,7 @@ namespace ENEYSolutions {
      */
     public function admin_menu() {
       $this->admin_pages['toplevel'] = \add_menu_page( __( 'Complex Meta Fields Welcome', WP_CMF_DOMAIN ), __( 'CMF', WP_CMF_DOMAIN ), 'manage_options', 'wp_cmf', array( $this, 'ui_root_page' ), null, 100 );
+      $this->admin_pages['root'] = \add_submenu_page( 'wp_cmf' , __( 'Complex Meta Fields', WP_CMF_DOMAIN ), __( 'Welcome', WP_CMF_DOMAIN ), 'manage_options', 'wp_cmf', array( $this, 'ui_root_page' ));
       $this->admin_pages['manage'] = \add_submenu_page( 'wp_cmf' , __( 'Complex Meta Fields', WP_CMF_DOMAIN ), __( 'Manage', WP_CMF_DOMAIN ), 'manage_options', 'wp_cmf_manage', array( $this, 'ui_manage_page' ));
     }
     

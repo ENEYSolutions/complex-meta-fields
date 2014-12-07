@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Complex Meta Fields\n"
-"POT-Creation-Date: 2014-12-07 13:58+0200\n"
-"PO-Revision-Date: 2014-12-07 13:58+0200\n"
+"POT-Creation-Date: 2014-12-07 14:45+0200\n"
+"PO-Revision-Date: 2014-12-07 14:45+0200\n"
 "Last-Translator: Anton Korotkoff <anton@eney-solutions.com.ua>\n"
 "Language-Team: ENEY Solutions <anton@eney-solutions.com.ua>\n"
 "Language: ru_RU\n"
@@ -18,23 +18,27 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: node_modules\n"
 
-#: includes/class-cmf.php:100
+#: includes/class-cmf.php:73
+msgid "Sure?"
+msgstr "Уверены?"
+
+#: includes/class-cmf.php:108
 msgid "Complex Meta Fields Welcome"
 msgstr "Complex Meta Fields Приветствие"
 
-#: includes/class-cmf.php:100
+#: includes/class-cmf.php:108
 msgid "CMF"
 msgstr "CMF"
 
-#: includes/class-cmf.php:101 includes/class-cmf.php:102
+#: includes/class-cmf.php:109 includes/class-cmf.php:110
 msgid "Complex Meta Fields"
 msgstr "Complex Meta Fields"
 
-#: includes/class-cmf.php:101
+#: includes/class-cmf.php:109
 msgid "Welcome"
 msgstr "Приветствие"
 
-#: includes/class-cmf.php:102
+#: includes/class-cmf.php:110
 msgid "Manage"
 msgstr "Управление"
 

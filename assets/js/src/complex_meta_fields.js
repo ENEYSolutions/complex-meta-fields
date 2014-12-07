@@ -6,7 +6,7 @@
  * Licensed under the GPLv2+ license.
  */
 
-(function (window, undefined) {
+(function (window, undefined) { 
   'use strict';
   
   //** Input variants values constructor */
@@ -75,7 +75,7 @@
      * @returns {undefined}
      */
     $scope.removeFieldSet = function( fieldsets, item ) {
-      if ( confirm( 'Sure?' ) ) fieldsets.splice(item, 1);
+      if ( confirm( cmfL10N.sure ) ) fieldsets.splice(item, 1);
     };
     
     /**
@@ -85,7 +85,7 @@
      * @returns {undefined}
      */
     $scope.removeFieldValue = function( options, item ) {
-      if ( confirm( 'Sure?' ) ) options.splice(item, 1);
+      if ( confirm( cmfL10N.sure ) ) options.splice(item, 1);
     };
     
     /**
@@ -113,7 +113,7 @@
      * @returns {undefined}
      */
     $scope.removeField = function( options, item ) {
-      if ( confirm( 'Sure?' ) ) options.splice(item, 1);
+      if ( confirm( cmfL10N.sure ) ) options.splice(item, 1);
     };
     
     /**
@@ -169,7 +169,7 @@
     };
     
     $scope.removeFieldSet = function( fieldsets, item ) {
-      if ( confirm( 'Sure?' ) ) fieldsets.splice(item, 1);
+      if ( confirm( cmfL10N.sure ) ) fieldsets.splice(item, 1);
     };
     
   });

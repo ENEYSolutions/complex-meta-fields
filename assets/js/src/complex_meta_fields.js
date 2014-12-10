@@ -6,7 +6,7 @@
  * Licensed under the GPLv2+ license.
  */
 
-(function (window, undefined) { 
+(function (window, undefined) {
   'use strict';
   
   //** Input variants values constructor */
@@ -40,7 +40,7 @@
   var cmf = window.cmf = angular
   
   //** Create module */
-  .module( 'cmfApp', ['slugifier'] )
+  .module( 'cmfApp', ['slugifier', 'ui.tinymce'] )
   
   //** Create controller for Fields Builder */
   .controller( 'cmfWorkspace', function( $scope, $http ){
@@ -158,7 +158,8 @@
     $scope.fieldsets = [];
     
     //** Init function */
-    $scope.initialize = function( args, template ) { 
+    $scope.initialize = function( args, template ) {
+      $scope._filterFormat(args);
       $scope.template = template;
       $scope.fieldsets = args;
     };
@@ -168,9 +169,21 @@
       fieldsets.push( angular.copy( $scope.template ) );
     };
     
+    //** */
     $scope.removeFieldSet = function( fieldsets, item ) {
       if ( confirm( cmfL10N.sure ) ) fieldsets.splice(item, 1);
     };
+    
+    //** */
+    $scope._filterFormat = function( args ) {
+      for( var i in args ) {
+        for( var j in args[i].options ) {
+          if ( args[i].options[j].input === 'date' ) {
+            args[i].options[j].value = new Date( args[i].options[j].value );
+          }
+        }
+      }
+    }
     
   });
 

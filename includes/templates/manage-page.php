@@ -137,6 +137,18 @@ $post_types=get_post_types(array(
                                         
                                       </optgroup>
                                       
+                                      <optgroup label="<?php _e('HTML5', WP_CMF_DOMAIN); ?>">
+                                      
+                                        <option value="date"><?php _e('Date', WP_CMF_DOMAIN); ?></option>
+                                        
+                                      </optgroup>
+                                      
+                                      <optgroup label="<?php _e('Advanced', WP_CMF_DOMAIN); ?>">
+                                      
+                                        <option value="richtext"><?php _e('Editor', WP_CMF_DOMAIN); ?></option>
+                                        
+                                      </optgroup>
+                                      
                                     </select>
                                   </label>
                                 </td>

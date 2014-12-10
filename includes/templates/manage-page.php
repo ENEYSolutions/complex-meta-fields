@@ -140,6 +140,9 @@ $post_types=get_post_types(array(
                                       <optgroup label="<?php _e('HTML5', WP_CMF_DOMAIN); ?>">
                                       
                                         <option value="date"><?php _e('Date', WP_CMF_DOMAIN); ?></option>
+                                        <option value="email"><?php _e('Email', WP_CMF_DOMAIN); ?></option>
+                                        <option value="number"><?php _e('Number', WP_CMF_DOMAIN); ?></option>
+                                        <option value="url"><?php _e('URL', WP_CMF_DOMAIN); ?></option>
                                         
                                       </optgroup>
                                       

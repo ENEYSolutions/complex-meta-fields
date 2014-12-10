@@ -159,6 +159,7 @@
     
     //** Init function */
     $scope.initialize = function( args, template ) {
+      console.log( args );
       $scope._filterFormat(args);
       $scope.template = template;
       $scope.fieldsets = args;
@@ -169,17 +170,24 @@
       fieldsets.push( angular.copy( $scope.template ) );
     };
     
-    //** */
+    //** Remove */
     $scope.removeFieldSet = function( fieldsets, item ) {
       if ( confirm( cmfL10N.sure ) ) fieldsets.splice(item, 1);
     };
     
-    //** */
+    //** Filter out */
     $scope._filterFormat = function( args ) {
       for( var i in args ) {
         for( var j in args[i].options ) {
+          
+          //** Date */
           if ( args[i].options[j].input === 'date' ) {
             args[i].options[j].value = new Date( args[i].options[j].value );
+          }
+          
+          //** Number */
+          if ( args[i].options[j].input === 'number' ) {
+            args[i].options[j].value = Number(args[i].options[j].value); 
           }
         }
       }

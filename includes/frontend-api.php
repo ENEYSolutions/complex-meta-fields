@@ -26,7 +26,7 @@ if ( !function_exists( 'cmf_have_meta' ) ) {
         if ( !empty( $wp_query->post ) && !empty( $wp_query->post->ID ) ) {
           $_post_meta = get_post_meta( $wp_query->post->ID, $meta_key, 1 );
           if ( !empty( $_post_meta ) ) {
-            $wp_query->post->cmf[$meta_key] = $_post_meta;
+            $wp_query->post->cmf[$meta_key] = apply_filters( WP_CMF_DOMAIN . '_have_meta_prepare', $_post_meta, $meta_key );
             $wp_query->post->cmf[$meta_key.'_current'] = key($wp_query->post->cmf[$meta_key]);
           } else {
             return false;

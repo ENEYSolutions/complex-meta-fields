@@ -57,9 +57,11 @@ namespace ENEYSolutions {
       
       //** Filters */
       add_filter( WP_CMF_DOMAIN . '_js_l10n', array( $this, 'l10n' ) );
+      add_filter( WP_CMF_DOMAIN . '_have_meta_prepare', array( $this, 'have_meta_prepare' ), 10, 2 );
       
       //** AJAX */
       add_action( 'wp_ajax_cmf_get_fieldsets', array( $this->ajax, 'ajax_get_fieldsets' ) );
+      add_action( 'wp_ajax_cmf_get_attachment_thumbnail', array( $this->ajax, 'ajax_get_attachment_thumbnail' ) );
     }
     
     /**
@@ -78,6 +80,43 @@ namespace ENEYSolutions {
     function l10n( $array ) {
       $array['sure'] = __('Sure?', WP_CMF_DOMAIN);
       return $array;
+    }
+    
+    /**
+     * 
+     * @param type $meta
+     * @param type $key
+     * @return type
+     */
+    function have_meta_prepare( $meta, $key ) {
+      
+      //** Get all settings */
+      $_fieldsets = get_option( WP_CMF_OPTION );
+      
+      if ( empty( $_fieldsets ) || !is_array( $_fieldsets ) ) {
+        return $meta;
+      }
+      
+      //** Go through them */ 
+      foreach ( $_fieldsets as $_fieldset ) {
+        
+        //** Search only for ones we need */
+        if ( $_fieldset['slug'] !== $key ) continue;
+        
+        if ( !empty( $_fieldset['options'] ) && is_array( $_fieldset['options'] ) ) {
+          foreach( $_fieldset['options'] as $_option ) {
+            echo '<pre>';
+            print_r( $meta );
+            echo '</pre>';
+            echo '<pre>';
+            print_r( $_option );
+            echo '</pre>';
+          }
+        }
+        
+      }
+      
+      return $meta;
     }
 
 

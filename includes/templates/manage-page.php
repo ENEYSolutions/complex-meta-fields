@@ -149,6 +149,7 @@ $post_types=get_post_types(array(
                                       <optgroup label="<?php _e('Advanced', WP_CMF_DOMAIN); ?>">
                                       
                                         <option value="richtext"><?php _e('Editor', WP_CMF_DOMAIN); ?></option>
+                                        <option value="image"><?php _e('Image', WP_CMF_DOMAIN); ?></option>
                                         
                                       </optgroup>
                                       

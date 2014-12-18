@@ -154,6 +154,9 @@
     //** Templates URL */
     $scope.templates_url = cmfL10N.templates_url;
     
+    //** Localization for this controller */
+    $scope.l10n = cmfL10N.cmfMetaBox; 
+    
     //** Fields Collection */
     $scope.fieldsets = [];
     

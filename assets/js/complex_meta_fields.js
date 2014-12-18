@@ -1,4 +1,4 @@
-/*! Complex Meta Fields - v1.0.3
+/*! Complex Meta Fields - v1.0.4
  * http://eney-solutions.com.ua/complex-meta-fields
  * Copyright (c) 2014; * Licensed GPLv2+ */
 (function (window, undefined) {
@@ -148,6 +148,9 @@
     
     //** Templates URL */
     $scope.templates_url = cmfL10N.templates_url;
+    
+    //** Localization for this controller */
+    $scope.l10n = cmfL10N.cmfMetaBox; 
     
     //** Fields Collection */
     $scope.fieldsets = [];

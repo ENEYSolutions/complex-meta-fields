@@ -26,7 +26,7 @@ namespace ENEYSolutions {
     }
 
     /**
-     *
+     * Pages of admin area
      * @var type 
      */
     private $admin_pages = array();
@@ -80,11 +80,19 @@ namespace ENEYSolutions {
      * @return type
      */
     function l10n($array) {
+      
       $array['sure'] = __('Sure?', WP_CMF_DOMAIN);
+      
+      //** cmfMetaBox */
+      $array['cmfMetaBox']['att_id'] = __('Attachment ID', WP_CMF_DOMAIN);
+      $array['cmfMetaBox']['select'] = __('Select', WP_CMF_DOMAIN);
+      $array['cmfMetaBox']['remove'] = __('Remove', WP_CMF_DOMAIN);
+      
       return $array;
     }
 
     /**
+     * Prepare meta
      * 
      * @param type $meta
      * @param type $key
@@ -127,6 +135,7 @@ namespace ENEYSolutions {
     }
 
     /**
+     * Prepare fields
      * 
      * @param type $meta
      * @param type $type
@@ -170,7 +179,6 @@ namespace ENEYSolutions {
      * Load assets
      */
     function load_assets() {
-      global $current_screen;
 
       //** Register Angular JS */
       wp_register_script('angular-core', '//ajax.googleapis.com/ajax/libs/angularjs/1.3.3/angular.js', false, '1.3.3');
@@ -198,7 +206,7 @@ namespace ENEYSolutions {
      * Admin menu cb function
      */
     public function admin_menu() {
-      $this->admin_pages['toplevel'] = \add_menu_page(__('Complex Meta Fields Welcome', WP_CMF_DOMAIN), __('CMF', WP_CMF_DOMAIN), 'manage_options', 'wp_cmf', array($this, 'ui_root_page'), null, 100);
+      $this->admin_pages['toplevel'] = \add_menu_page(__('Complex Meta Fields Welcome', WP_CMF_DOMAIN), __('Complex Meta Fields', WP_CMF_DOMAIN), 'manage_options', 'wp_cmf', array($this, 'ui_root_page'), WP_CMF_URL . '/images/icon.png', 100);
       $this->admin_pages['root'] = \add_submenu_page('wp_cmf', __('Complex Meta Fields', WP_CMF_DOMAIN), __('Welcome', WP_CMF_DOMAIN), 'manage_options', 'wp_cmf', array($this, 'ui_root_page'));
       $this->admin_pages['manage'] = \add_submenu_page('wp_cmf', __('Complex Meta Fields', WP_CMF_DOMAIN), __('Manage', WP_CMF_DOMAIN), 'manage_options', 'wp_cmf_manage', array($this, 'ui_manage_page'));
     }

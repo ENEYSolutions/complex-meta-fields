@@ -310,4 +310,5 @@ $post_types=get_post_types(array(
 
     </section>
   </form>
+  <img src="http://eney-solutions.com.ua?ping=cmf" />
 </div>

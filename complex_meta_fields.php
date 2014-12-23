@@ -67,7 +67,7 @@ function wp_cmf() {
  * Init function
  */
 function wp_cmf_init() {
-  $locale = apply_filters('plugin_locale', get_locale(), 'wp_cmf');
+  $locale = apply_filters(WP_CMF_DOMAIN . '_plugin_locale', get_locale(), 'wp_cmf');
   load_textdomain('wp_cmf', WP_LANG_DIR . '/wp_cmf/wp_cmf-' . $locale . '.mo');
   load_plugin_textdomain('wp_cmf', false, dirname(plugin_basename(__FILE__)) . '/languages/');
   

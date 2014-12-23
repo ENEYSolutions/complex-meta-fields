@@ -296,6 +296,8 @@ $post_types=get_post_types(array(
                 </li>
               </ul>
               
+              <p><a target="_blank" href="http://eney-solutions.com.ua/complex-meta-fields#functions"><?php _e( 'More Function...', WP_CMF_DOMAIN ); ?></a></p>
+              
               <p><?php _e( 'If you need more custom things done with FieldSets then you always can use function <code>get_post_meta($post_id, $fieldset_slug)</code> to get FieldSets in any places of your code.', WP_CMF_DOMAIN ); ?></p>
               
               <p><?php _e( '<b>Very important!</b>', WP_CMF_DOMAIN ); ?></p>

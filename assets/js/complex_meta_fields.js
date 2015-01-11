@@ -1,6 +1,6 @@
 /*! Complex Meta Fields - v1.0.5
  * http://eney-solutions.com.ua/complex-meta-fields
- * Copyright (c) 2014; * Licensed GPLv2+ */
+ * Copyright (c) 2015; * Licensed GPLv2+ */
 (function (window, undefined) {
   'use strict';
   
@@ -160,6 +160,25 @@
       $scope._filterFormat(args);
       $scope.template = template;
       $scope.fieldsets = args;
+    };
+    
+    //** Preview fieldset in order to minify taken place @WIP */
+    $scope.preview = function( fieldset ) {
+      var string = '';
+      
+      for( var i in fieldset.options ) {
+        if ( fieldset.options[i].value ) {
+          switch ( fieldset.options[i].input ) {
+            case 'text':
+              string += fieldset.options[i].value + ' ';
+              break;
+            default: break;
+          }
+          console.log(fieldset.options[i]);
+        }
+      }
+      
+      return string;
     };
     
     //** Add Fieldset function */

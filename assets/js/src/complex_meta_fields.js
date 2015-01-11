@@ -167,6 +167,25 @@
       $scope.fieldsets = args;
     };
     
+    //** Preview fieldset in order to minify taken place @WIP */
+    $scope.preview = function( fieldset ) {
+      var string = '';
+      
+      for( var i in fieldset.options ) {
+        if ( fieldset.options[i].value ) {
+          switch ( fieldset.options[i].input ) {
+            case 'text':
+              string += fieldset.options[i].value + ' ';
+              break;
+            default: break;
+          }
+          console.log(fieldset.options[i]);
+        }
+      }
+      
+      return string;
+    };
+    
     //** Add Fieldset function */
     $scope.addFieldSet = function( fieldsets ) {
       fieldsets.push( angular.copy( $scope.template ) );

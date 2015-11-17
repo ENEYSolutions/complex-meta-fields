@@ -181,7 +181,7 @@ namespace ENEYSolutions {
     function load_assets() {
 
       //** Register Angular JS */
-      wp_register_script('angular-core', '//ajax.googleapis.com/ajax/libs/angularjs/1.3.3/angular.js', false, '1.3.3');
+      wp_register_script('angular-core', '//ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js', false, '1.4.7');
       wp_register_script('angular-slugify', WP_CMF_URL . 'assets/js/vendor/angular-slugify.js', false, WP_CMF_VERSION);
       wp_register_script('angular-tinymce', WP_CMF_URL . 'assets/js/vendor/angular-tinymce.js', false, WP_CMF_VERSION);
 

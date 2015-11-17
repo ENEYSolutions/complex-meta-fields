@@ -326,5 +326,4 @@ $post_types=get_post_types(array(
     <?php do_action( WP_CMF_DOMAIN . '_settings_form_end' ); ?>
     
   </form>
-  <img src="http://eney-solutions.com.ua?ping=cmf" />
 </div>

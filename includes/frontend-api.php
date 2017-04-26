@@ -4,6 +4,19 @@
  * Front-end API functions
  */
 
+if ( !function_exists( 'cmf_reset_meta' ) ) {
+  
+  /**
+   * Reset Loop meta
+   * 
+   * @global type $wp_query
+   */
+  function cmf_reset_meta() {
+    global $wp_query;
+    $wp_query->post->cmf = array();
+  }
+}
+
 if ( !function_exists( 'cmf_have_meta' ) ) {
   
   /**
